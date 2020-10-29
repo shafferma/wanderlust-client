@@ -16,7 +16,7 @@ const RegistrationPage = () => {
             }else{
                 alert("Passwords do not match!");
             }
-            fetch('herokudburl/user/register', {
+            fetch('https://wanderlust-travel-hhsk.herokuapp.com/user/register', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
