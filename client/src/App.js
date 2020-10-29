@@ -1,11 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
+import SearchForm from './components/SearchForm';
+import TripViewPage from './components/TripViewPage';
 
 function App() {
   return (
     <div>
-      <h1>Test</h1>
-      <h2>Brian's Branch</h2>
+      
+      <TripViewPage/>
     </div>
   );
 }
