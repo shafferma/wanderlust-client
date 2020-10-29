@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Button } from "reactstrap";
 
 const Navbar = () => {
   return (
@@ -16,6 +17,9 @@ const Navbar = () => {
         </li>
         <li>
           <Link to="/trips">Trips</Link>
+        </li>
+        <li>
+          {/* <Button>Logout</Button> */}
         </li>
       </ul>
     </nav>
