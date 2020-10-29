@@ -4,9 +4,10 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import HomePage from "./views/HomePage";
 import LoginPage from "./views/LoginPage";
+import RegistrationPage from "./views/RegistrationPage";
 import TripViewPage from "./views/TripViewPage";
 import TripListPage from "./views/TripListPage";
-import RegistrationPage from "./views/RegistrationPage";
+
 
 function App() {
   const [sessionToken, setSessionToken] = useState("");

@@ -4,6 +4,7 @@ import { Button } from "reactstrap";
 
 const Navbar = () => {
   return (
+    
     <nav>
       <ul>
         <li>
@@ -19,7 +20,7 @@ const Navbar = () => {
           <Link to="/trips">Trips</Link>
         </li>
         <li>
-          {/* <Button>Logout</Button> */}
+          <Button>Logout</Button>
         </li>
       </ul>
     </nav>
