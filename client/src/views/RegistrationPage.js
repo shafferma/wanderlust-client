@@ -1,6 +1,7 @@
 const RegistrationPage = () => {
     return (
-        <div>Register</div>
+        // id and role are navigation from HomePage to Registration 
+        <div id="register" role='navigation'>Register</div>
     )
 }
 

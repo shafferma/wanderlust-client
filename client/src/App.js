@@ -25,7 +25,7 @@ function App() {
           </Route>
           <Route path="/trips">
             <TripListPage />
-          </Route>
+          </Route> 
           <Route path="/">
             <HomePage />
           </Route>
@@ -36,3 +36,4 @@ function App() {
 }
 
 export default App;
+
