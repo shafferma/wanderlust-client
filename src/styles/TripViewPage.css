@@ -1,0 +1,11 @@
+.tripViewTable{
+    display: flex;
+    flex-direction: row;
+    width: 75%;
+}
+#tripTable{
+    margin-right:200px;
+}
+#tripImage{
+    padding-left: 300px;
+}
