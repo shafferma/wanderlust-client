@@ -11,7 +11,7 @@ const TripListPage = (props) => {
     
     
     return (
-         <div className>
+         <div>
             <h1> Time to make some Lists!</h1>
             
 
