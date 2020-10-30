@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+.jumbotron {
+  margin-left: 25%;
+  padding-left: 5%;
+  padding-right: 15;
+  margin-right: 30%;
+  border: darkblue solid 3px;
+  border-radius: 15px;
+  position: center;
+  padding-bottom: 15px;
+}
