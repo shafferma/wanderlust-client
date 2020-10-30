@@ -32,7 +32,7 @@ function App() {
   return (
     <Router>
       <div>
-        <Navbar />
+        <Navbar logout={clearToken} isLoggedIn={!!sessionToken}/>
         <Switch>
           <Route path="/login">
             <LoginPage updateToken={updateToken}/>
