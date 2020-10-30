@@ -20,6 +20,9 @@ const Navbar = () => {
           <Link to="/trips">Trips</Link>
         </li>
         <li>
+          <Link to="/search">Search</Link>
+        </li>
+        <li>
           <Button>Logout</Button>
         </li>
       </ul>

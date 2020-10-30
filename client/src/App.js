@@ -1,11 +1,14 @@
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import HomePage from "./views/HomePage";
 import LoginPage from "./views/LoginPage";
 import RegistrationPage from "./views/RegistrationPage";
+import SearchForm from "./components/SearchForm"; 
 import TripViewPage from "./views/TripViewPage";
 import TripListPage from "./views/TripListPage";
+
 
 
 function App() {
@@ -45,6 +48,11 @@ function App() {
           <Route path="/trips">
             <TripListPage />
           </Route> 
+
+          <Route path="/search">  
+            <SearchForm />
+          </Route> 
+
           <Route path="/">
             <HomePage />
           </Route>
