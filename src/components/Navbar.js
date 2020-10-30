@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from "react";
+
 import {
   Nav,
   NavLink,
@@ -16,16 +18,15 @@ const Sitebar = (props) => {
 
   return (
     <div>
-      <Navbar color="faded" light expand="md">
-        <NavbarBrand href="/" className="mr-auto">
-          Wanderlust
-        </NavbarBrand>
+      <Navbar className="navbar" color="faded" light expand="md">
+        <NavbarBrand href="/" className="mr-auto"></NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>
             <NavItem>
               <NavLink href="/">Home</NavLink>
             </NavItem>
+
             {!props.isLoggedIn ? (
               <>
                 <NavItem>
@@ -41,7 +42,9 @@ const Sitebar = (props) => {
                 <NavItem>
                   <NavLink href="/trips">Trips</NavLink>
                 </NavItem>
-
+                <NavItem>
+                  <NavLink href="/search">Search</NavLink>
+                </NavItem>
                 <NavItem>
                   <Button onClick={props.logout}>Logout</Button>
                 </NavItem>
@@ -55,4 +58,3 @@ const Sitebar = (props) => {
 };
 
 export default Sitebar;
-
