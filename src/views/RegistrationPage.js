@@ -1,5 +1,6 @@
+import React, { useState, useEffect } from "react";
 import { Form, FormGroup, Label, Input, Button, Modal, ModalBody, ModalHeader } from "reactstrap";
-import ApiProvider from "../utils/ApiProvider";
+// import ApiProvider from "../utils/ApiProvider";
 import '../styles/RegistrationPage.css';
 
 const RegistrationPage = (props) => {
