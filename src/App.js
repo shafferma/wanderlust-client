@@ -37,8 +37,6 @@ function App() {
     <Router>
       <div>
 
-        <Navbar />
-
         <Navbar logout={clearToken} isLoggedIn={!!sessionToken}/>
 
         <Switch>

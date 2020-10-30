@@ -1,3 +1,4 @@
+import React, {useState} from 'react'
 import { Form, FormGroup, Label, Input, Button, Modal, ModalBody, ModalHeader } from "reactstrap";
 import ApiProvider from "../utils/ApiProvider";
 import '../styles/RegistrationPage.css';
