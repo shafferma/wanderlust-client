@@ -30,7 +30,6 @@ const RegistrationPage = (props) => {
             alert("Passwords do not match!");
           }
         }
-        //After successful registration, navigate to TRIP LIST PAGE
     };
 
   return (
