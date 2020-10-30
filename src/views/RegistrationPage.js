@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import { Form, FormGroup, Label, Input, Button, Modal, ModalBody, ModalHeader } from "reactstrap";
 // import ApiProvider from "../utils/ApiProvider";
+=======
+import React, { useState } from "react";
+import { Form, FormGroup, Label, Input, Button, Modal, ModalBody, ModalHeader, ModalFooter } from "reactstrap";
+import ApiProvider from "../utils/ApiProvider";
+>>>>>>> ryanfix
 import '../styles/RegistrationPage.css';
 
 const RegistrationPage = (props) => {
@@ -23,7 +29,8 @@ const RegistrationPage = (props) => {
           })
           .then(response => response.json())
           .then((data) => {
-              props.updateToken(data.sessionToken)
+              props.updateToken(data.sessionToken);
+              setModalOpen(false)
           })
           .catch(error => console.log(error));
           }else{
@@ -35,9 +42,11 @@ const RegistrationPage = (props) => {
   return (
     <div id="register" role='navigation'>
             <Modal isOpen={modalOpen} id="registerModal">
-                <ModalHeader>Welcome to Wanderlust!</ModalHeader>
-                <ModalBody>
-                    <Form onSubmit={handleSubmit}>
+                <ModalHeader className="modalHeader">Welcome to Wanderlust!</ModalHeader>
+                <ModalBody id="modalBody">
+                <div id="modalImage"></div>
+                <div id="modalForm">
+                    <Form id="registerForm" onSubmit={handleSubmit}>
                         <FormGroup>
                             <Label htmlFor="registerUsername">Username</Label>
                             <Input onChange={event => setUsername(event.target.value)} value={username} id="registerUsername"></Input>
@@ -53,10 +62,11 @@ const RegistrationPage = (props) => {
                         <FormGroup>
                             <Label htmlFor="passwordConfirm">Confirm Password</Label>
                             <Input onChange={event => setPasswordConfirm(event.target.value)} value={passwordConfirm} id="passwordConfirm" type="password"></Input>
-                        </FormGroup>
-                        <Button>Create Account</Button>
+                        </FormGroup>                   
                     </Form>
+                    </div>
                 </ModalBody>
+                <ModalFooter className="modalFooter"><Button form="registerForm" id="modalSubmitButton" type="submit">Create Account</Button> </ModalFooter>
             </Modal>
         </div>
 
