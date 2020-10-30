@@ -28,6 +28,11 @@ function App() {
     localStorage.clear();
     setSessionToken("");
   };
+
+  // const protectedViews = () => {
+  //   return (sessionToken === window.localStorage.getItem("token") ? <TripListPage token={sessionToken} /> : 
+  //   <RegistrationPage updateToken={updateToken}/>)
+  // }
   
   return (
     <Router>
