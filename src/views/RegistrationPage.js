@@ -1,42 +1,39 @@
-import React, {useState} from 'react';
-import {Form, FormGroup, Label, Input, Button, ModalBody, Modal, ModalHeader} from 'reactstrap';
+import { Form, FormGroup, Label, Input, Button, Modal, ModalBody, ModalHeader } from "reactstrap";
+import ApiProvider from "../utils/ApiProvider";
 import '../styles/RegistrationPage.css';
 
-const RegistrationPage = () => {
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [passwordConfirm, setPasswordConfirm] = useState('');
+const RegistrationPage = (props) => {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [modalOpen, setModalOpen] = useState(true);
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        if(username && email && password){
-            if(password === passwordConfirm){
-
-            }else{
-                alert("Passwords do not match!");
-            }
-            fetch('https://wanderlust-travel-hhsk.herokuapp.com/user/register', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    username,
-                    email,
-                    password
-                }),
-            })
-            .then(response => response.json())
-            .catch(error => console.log(error));
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if(username && email && password){
+      if(password === passwordConfirm){
+        fetch("https://wanderlust-travel-hhsk.herokuapp.com/user/register", {
+          method: 'POST',
+          headers: {
+          "Content-Type": "application/json"
+          },
+          body: JSON.stringify({user: {username, email, password}}),
+          })
+          .then(response => response.json())
+          .then((data) => {
+              props.updateToken(data.sessionToken)
+          })
+          .catch(error => console.log(error));
+          }else{
+            alert("Passwords do not match!");
+          }
         }
-        //After successful registration, navigate to TRIP LIST PAGE
-    }
+    };
 
-    return (
-        // id and role are navigation from HomePage to Registration 
-        <div id="register" role='navigation'>
-            <Modal id="registerModal">
+  return (
+    <div id="register" role='navigation'>
+            <Modal isOpen={modalOpen} id="registerModal">
                 <ModalHeader>Welcome to Wanderlust!</ModalHeader>
                 <ModalBody>
                     <Form onSubmit={handleSubmit}>
@@ -56,12 +53,13 @@ const RegistrationPage = () => {
                             <Label htmlFor="passwordConfirm">Confirm Password</Label>
                             <Input onChange={event => setPasswordConfirm(event.target.value)} value={passwordConfirm} id="passwordConfirm" type="password"></Input>
                         </FormGroup>
-                        <Button>Submit</Button>
+                        <Button>Create Account</Button>
                     </Form>
                 </ModalBody>
             </Modal>
         </div>
-    )
-}
+
+  );
+};
 
 export default RegistrationPage;
