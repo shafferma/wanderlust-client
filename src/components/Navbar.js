@@ -1,5 +1,7 @@
+
 import React, { useState, useEffect } from "react";
 import '../styles/Navbar.css';
+
 import {
   Nav,
   NavLink,
@@ -29,6 +31,10 @@ const Sitebar = (props) => {
 
             {!props.isLoggedIn ? (
               <>
+
+                <NavItem>
+                  <NavLink href="/search">Search</NavLink>
+                </NavItem>
                 <NavItem>
                   <NavLink href="/login">Login</NavLink>
                 </NavItem>
