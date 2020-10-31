@@ -36,11 +36,7 @@ function App() {
   return (
     <Router>
       <div>
-
-        <Navbar />
-
-        <Navbar logout={clearToken} isLoggedIn={!!sessionToken}/>
-
+      <Navbar logout={clearToken} isLoggedIn={!!sessionToken}/>
         <Switch>
           <Route path="/login">
             <LoginPage updateToken={updateToken}/>
@@ -53,6 +49,10 @@ function App() {
           </Route>
           <Route path="/trips">
             <TripListPage />
+          </Route> 
+
+          <Route path="/search">
+            <SearchForm />
           </Route> 
 
           <Route path="/">
