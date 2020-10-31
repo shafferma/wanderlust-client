@@ -1,7 +1,5 @@
-
 import React, { useState, useEffect } from "react";
-import '../styles/Navbar.css';
-
+import "../styles/Navbar.css";
 import {
   Nav,
   NavLink,
@@ -12,14 +10,21 @@ import {
   NavbarToggler,
   Button,
 } from "reactstrap";
+import { useHistory } from "react-router-dom";
 
 const Sitebar = (props) => {
   const [collapsed, setCollapsed] = useState(true);
 
   const toggleNavbar = () => setCollapsed(!collapsed);
 
+  let history = useHistory();
+  const handleLogout = () => {
+    props.logout();
+    history.push("/");
+  };
+
   return (
-    <div id='navbar'>
+    <div id="navbar">
       <Navbar color="faded" light expand="md">
         <NavbarBrand href="/" className="mr-auto"></NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
@@ -31,7 +36,6 @@ const Sitebar = (props) => {
 
             {!props.isLoggedIn ? (
               <>
-
                 <NavItem>
                   <NavLink href="/search">Search</NavLink>
                 </NavItem>
@@ -52,7 +56,7 @@ const Sitebar = (props) => {
                   <NavLink href="/search">Search</NavLink>
                 </NavItem>
                 <NavItem>
-                  <Button onClick={props.logout}>Logout</Button>
+                  <Button onClick={handleLogout}>Logout</Button>
                 </NavItem>
               </>
             ) : null}
