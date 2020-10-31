@@ -19,7 +19,9 @@ const Sitebar = (props) => {
 
   let history = useHistory();
   const handleLogout = () => {
+    // clears token
     props.logout();
+    // direct user to the homepage
     history.push("/");
   };
 

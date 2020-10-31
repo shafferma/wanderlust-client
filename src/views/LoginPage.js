@@ -25,6 +25,7 @@ const Login = (props) => {
           alert("Login not valid, please try again");
         } else {
           props.updateToken(data.sessionToken);
+          // direct the user to the trips page after login
           history.push("/trips");
         }
       });

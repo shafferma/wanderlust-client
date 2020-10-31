@@ -34,36 +34,25 @@ function App() {
     setSessionToken("");
   };
 
-  const authenticatedRoutes = () => {
-    return sessionToken === window.localStorage.getItem("token") ? (
-      <TripListPage token={sessionToken} />
-    ) : (
-      <RegistrationPage updateToken={updateToken} />
-    );
-  };
   // A wrapper for <Route> that redirects to the login
   // screen if you're not yet authenticated.
-  const PrivateRoute = ({ children, ...rest }) => {
-    console.log(!!sessionToken);
-
-    return (
-      <Route
-        {...rest}
-        render={({ location }) =>
-          !!sessionToken ? (
-            children
-          ) : (
-            <Redirect
-              to={{
-                pathname: "/login",
-                state: { from: location },
-              }}
-            />
-          )
-        }
-      />
-    );
-  };
+  const PrivateRoute = ({ children, ...rest }) => (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        !!sessionToken ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: { from: location },
+            }}
+          />
+        )
+      }
+    />
+  );
   return (
     <Router>
       <div>
@@ -81,11 +70,9 @@ function App() {
           <PrivateRoute path="/trips">
             <TripListPage />
           </PrivateRoute>
-
           <Route path="/search">
             <SearchForm />
           </Route>
-
           <Route path="/">
             <HomePage />
           </Route>
