@@ -1,6 +1,4 @@
-![Heroku App Status](http://heroku-shields.herokuapp.com/wanderlust-1150)
-
-(https://wanderlust-1150.herokuapp.com)
+[![Heroku App Status](http://heroku-shields.herokuapp.com/wanderlust-1150)](https://wanderlust-1150.herokuapp.com)
 
 # Getting Started with Create React App
 
