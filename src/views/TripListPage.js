@@ -56,7 +56,8 @@ const TripListPage = (props) => {
             <h1>Lets Make Some Lists</h1>
 
             <div className='lists'>
-                <div>
+                <div className='listView'>
+                
                     <Button color='success' onClick={toggleModal}>
                         New List
                     </Button>
@@ -64,10 +65,34 @@ const TripListPage = (props) => {
                         <ModalHeader>Create New List</ModalHeader>
                         <ModalBody>
                             <Form>
-
-                            </Form>
+                                <FormGroup>
+                                    <Label htmlFor='newTitle'>Title:</Label>
+                                    <Input type="text" id='newTitle' onChange={ modifyListTitle } value={newListTitle} />
+                                </FormGroup>
+                                </Form>
+                                <Button color="warning" onCick={toggleModal}></Button>
                         </ModalBody>
                     </Modal>
+                   </div>
+                   {
+                       userLists.legnth > 0
+                       ? userLists.map(item => {
+                           return (
+                                <Card>
+                                    <CardBody>
+                                        <CardTitle>{item.title}</CardTitle>
+                                     <CardText>{item.description}</CardText>
+                                     <Button>View List Items</Button>
+                                    </CardBody>
+                                </Card>
+                           )
+                       })
+                    :(
+                        <h1>You have no Lists </h1>
+                    )
+                    }                   
+                </div> 
+                <div>
                     <Container>
                         <Card className="cards" >
                             <CardBody>
@@ -121,10 +146,10 @@ const TripListPage = (props) => {
                         </Card>
                     </Container>
 
-
+                    </div>
                 </div>
-            </div>
-        </div>
-    )
-}
+    );
+};
+            
+            
 export default TripListPage;
