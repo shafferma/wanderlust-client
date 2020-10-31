@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import '../styles/TripListPage.css'
-import { Card, CardBody, CardText, CardTitle, CardLink, CardSubtitle, Container, Button, } from 'reactstrap'
+import { Card, CardBody, CardText, CardTitle, CardLink, CardSubtitle, Container, Button, Modal, ModalHeader, ModalBody, Label, Input, Form, FormGroup } from 'reactstrap'
 import { Link } from 'react-router-dom';
 
 
@@ -57,6 +57,17 @@ const TripListPage = (props) => {
 
             <div className='lists'>
                 <div>
+                    <Button color='success' onClick={toggleModal}>
+                        New List
+                    </Button>
+                    <Modal isOpen={modalOpen} toggle={toggleModal}>
+                        <ModalHeader>Create New List</ModalHeader>
+                        <ModalBody>
+                            <Form>
+
+                            </Form>
+                        </ModalBody>
+                    </Modal>
                     <Container>
                         <Card className="cards" >
                             <CardBody>
