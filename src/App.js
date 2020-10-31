@@ -5,9 +5,7 @@ import Navbar from "./components/Navbar";
 import HomePage from "./views/HomePage";
 import LoginPage from "./views/LoginPage";
 import RegistrationPage from "./views/RegistrationPage";
-
 import SearchForm from "./components/SearchForm"; 
-
 import TripViewPage from "./views/TripViewPage";
 import TripListPage from "./views/TripListPage";
 
@@ -32,11 +30,22 @@ function App() {
     localStorage.clear();
     setSessionToken("");
   };
+
+  // const protectedViews = () => {
+  //   return (sessionToken === window.localStorage.getItem("token") ? <TripListPage token={sessionToken} /> : 
+  //   <RegistrationPage updateToken={updateToken}/>)
+  // }
   
   return (
     <Router>
       <div>
+
       <Navbar logout={clearToken} isLoggedIn={!!sessionToken}/>
+
+
+        <Navbar logout={clearToken} isLoggedIn={!!sessionToken}/>
+
+
         <Switch>
           <Route path="/login">
             <LoginPage updateToken={updateToken}/>
@@ -46,14 +55,20 @@ function App() {
           </Route>
           <Route path="/trips/:id">
             <TripViewPage />
+            <Route path="/search">
+              <SearchForm />
+            </Route>
           </Route>
           <Route path="/trips">
             <TripListPage />
           </Route> 
 
+
           <Route path="/search">
             <SearchForm />
           </Route> 
+
+
 
           <Route path="/">
             <HomePage />

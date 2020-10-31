@@ -1,4 +1,7 @@
-import React, {useState, useEffect} from 'react';
+
+import React, { useState, useEffect } from "react";
+import '../styles/Navbar.css';
+
 import {
   Nav,
   NavLink,
@@ -16,17 +19,16 @@ const Sitebar = (props) => {
   const toggleNavbar = () => setCollapsed(!collapsed);
 
   return (
-    <div>
+    <div id='navbar'>
       <Navbar color="faded" light expand="md">
-        <NavbarBrand href="/" className="mr-auto">
-          Wanderlust
-        </NavbarBrand>
+        <NavbarBrand href="/" className="mr-auto"></NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>
             <NavItem>
               <NavLink href="/">Home</NavLink>
             </NavItem>
+
             {!props.isLoggedIn ? (
               <>
 
@@ -46,7 +48,9 @@ const Sitebar = (props) => {
                 <NavItem>
                   <NavLink href="/trips">Trips</NavLink>
                 </NavItem>
-
+                <NavItem>
+                  <NavLink href="/search">Search</NavLink>
+                </NavItem>
                 <NavItem>
                   <Button onClick={props.logout}>Logout</Button>
                 </NavItem>
@@ -60,4 +64,3 @@ const Sitebar = (props) => {
 };
 
 export default Sitebar;
-

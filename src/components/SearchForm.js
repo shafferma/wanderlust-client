@@ -3,14 +3,11 @@ import {Button, CustomInput, Form, FormGroup, Input, Label} from 'reactstrap';
 import '../styles/SearchForm.css';
 
 
-
 /*
     - user enters location
     - location then needs to be entered into getcoord location function to be able to grab longitude & latitude for anotherf fetch
 
 */
-
-
 
 const SearchForm = () =>{
     
@@ -110,7 +107,6 @@ const SearchForm = (props) => {
 
 */ 
 
-
     return (
       <div>  
         <Form onSubmit={(event)=>getCoord(event)}>
@@ -182,7 +178,6 @@ const SearchForm = (props) => {
     )
     
 }
-
 
 export default SearchForm;
 
