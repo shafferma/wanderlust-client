@@ -27,10 +27,6 @@ const SearchForm = () =>{
         let url = `https://api.opentripmap.com/0.1/en/places/geoname?name=${search}&apikey=${key}`   //* WORKS?
         console.log(url)
 
-        // https://api.opentripmap.com/0.1/en/places/radius?radius=10000&lon=-86.15804&lat=39.76838&kinds=stadiums&format=json&apikey=5ae2e3f221c38a28845f05b647f834925ea24e44fb12d1cbd631c42a
-
-        
-
         //? below fetch pulls longitude and latitude from the api, to be reused in another fetch function
         fetch(url)  //? WORKS
         .then((response)=>response.json())  //? WORKS
@@ -51,12 +47,8 @@ const SearchForm = () =>{
                 let info=[i].name;
                 console.log(info)
               }
-                
-              
             })
-            
         })
-        
     }
 /*
     1. user types in location,
@@ -127,6 +119,7 @@ const SearchForm = (props) => {
               10 miles
             </Label>
           </FormGroup>
+          
           <Button type="submit">Click to Search</Button>   
           
         </Form> 
