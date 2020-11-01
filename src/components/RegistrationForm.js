@@ -12,14 +12,13 @@ import {
 } from "reactstrap";
 // import ApiProvider from "../utils/ApiProvider";
 
-import "../styles/RegistrationPage.css";
+import "../styles/RegistrationForm.css";
 
-const RegistrationPage = (props) => {
+const RegistrationForm = (props) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [modalOpen, setModalOpen] = useState(true);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -35,7 +34,7 @@ const RegistrationPage = (props) => {
           .then((response) => response.json())
           .then((data) => {
             props.updateToken(data.sessionToken);
-            setModalOpen(false);
+            props.close();
           })
           .catch((error) => console.log(error));
       } else {
@@ -46,7 +45,7 @@ const RegistrationPage = (props) => {
 
   return (
     <div id="register" role="navigation">
-      <Modal isOpen={modalOpen} id="registerModal">
+      <Modal isOpen={props.open} id="registerModal">
         <ModalHeader className="modalHeader">
           Welcome to Wanderlust!
         </ModalHeader>
@@ -102,4 +101,4 @@ const RegistrationPage = (props) => {
   );
 };
 
-export default RegistrationPage;
+export default RegistrationForm;
