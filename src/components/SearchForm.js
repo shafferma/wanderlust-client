@@ -3,14 +3,11 @@ import {Button, CustomInput, Form, FormGroup, Input, Label} from 'reactstrap';
 import '../styles/SearchForm.css';
 
 
-
 /*
     - user enters location
     - location then needs to be entered into getcoord location function to be able to grab longitude & latitude for anotherf fetch
 
 */
-
-
 
 const SearchForm = () =>{
     
@@ -26,7 +23,7 @@ const SearchForm = () =>{
         event.preventDefault();
        
         
-        let key = "5ae2e3f221c38a28845f05b647f834925ea24e44fb12d1cbd631c42a"            
+        let key = process.env.REACT_APP_OPENTRIP_API_KEY      
         let url = `https://api.opentripmap.com/0.1/en/places/geoname?name=${search}&apikey=${key}`   //* WORKS?
         console.log(url)
 
@@ -102,7 +99,6 @@ const SearchForm = (props) => {
 
 */ 
 
-
     return (
       <div>  
         <Form onSubmit={(event)=>getCoord(event)}>
@@ -174,7 +170,6 @@ const SearchForm = (props) => {
     )
     
 }
-
 
 export default SearchForm;
 
