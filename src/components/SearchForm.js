@@ -15,10 +15,10 @@ const SearchForm = () => {
 
   const getCoord = (event) => {
     event.preventDefault();
-
     let key = process.env.REACT_APP_OPENTRIP_API_KEY;
     let url = `https://api.opentripmap.com/0.1/en/places/geoname?name=${search}&apikey=${key}`; //* WORKS?
     console.log(url);
+    console.log(key);
 
     // https://api.opentripmap.com/0.1/en/places/radius?radius=10000&lon=-86.15804&lat=39.76838&kinds=stadiums&format=json&apikey=5ae2e3f221c38a28845f05b647f834925ea24e44fb12d1cbd631c42a
 
@@ -38,17 +38,25 @@ const SearchForm = () => {
 
         // };
 
-        let url2 = `https://api.opentripmap.com/0.1/en/places/radius?radius=${radius}&lon=${longitude}&lat=${latitude}&kinds=stadiums&format=json&apikey=${key}`;
+        let url2 = `https://api.opentripmap.com/0.1/en/places/radius?radius=${radius}&lon=${longitude}&lat=${latitude}&format=json&apikey=${key}`;
         console.log(url2);
 
         fetch(url2)
           .then((response) => response.json())
 
           .then((data) => {
-            for (let i = 0; i < [].length; i++) {
-              let info = [i].name;
-              console.log(info);
-            }
+            console.log(data);
+            let museums = data.filter((item) => item.kinds.includes("museums"));
+            let historic = data.filter((item) =>
+              item.kinds.includes("historic")
+            );
+
+            console.log(museums);
+            console.log(historic);
+            // for (let i=0; i<[].length; i++){
+            //   let info=[i].name;
+            //   console.log(data)
+            // }
           });
       });
   };
