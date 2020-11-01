@@ -38,7 +38,7 @@
 
 #modalBody {
   padding: 0px;
-  background-color: rgb(247, 245, 245);
+  background-color: rgb(236, 231, 231);
 }
 
 .modalFooter {
@@ -51,4 +51,30 @@
   background-color: #244c5a;
   width: 250px;
   letter-spacing: 0.15em;
+}
+
+#modalSubmitButton:hover {
+  background-color: #6693a3;
+  text-shadow: 2px 2px black;
+}
+
+#registerExit {
+  background-color: #ebd3d5;
+  border: 1px solid #f1cbce;
+  color: black;
+}
+
+#exitButton {
+  float: right;
+  margin-left: 60px;
+}
+
+#mainTitle {
+  float: left;
+  margin-left: 110px;
+}
+
+#registerExit:hover {
+  border: 1px solid #f1cbce;
+  background-color: #f1cbce;
 }
