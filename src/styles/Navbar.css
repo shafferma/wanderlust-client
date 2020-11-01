@@ -1,3 +1,6 @@
 #navbar {
-    background-color: rgb(181, 235, 235);
+  background-color: rgb(181, 235, 235);
+  font-family: "Pacifico", cursive;
+  font-size: 17px;
+  letter-spacing: 0.05em;
 }

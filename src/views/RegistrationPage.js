@@ -44,11 +44,20 @@ const RegistrationPage = (props) => {
     }
   };
 
+  const toggleModalOpen = () => {
+    setModalOpen(false);
+  };
+
   return (
     <div id="register" role="navigation">
       <Modal isOpen={modalOpen} id="registerModal">
         <ModalHeader className="modalHeader">
-          Welcome to Wanderlust!
+          <div id="mainTitle">Welcome to Wanderlust!</div>
+          <div id="exitButton">
+            <Button id="registerExit" onClick={toggleModalOpen}>
+              X
+            </Button>
+          </div>
         </ModalHeader>
         <ModalBody id="modalBody">
           <div id="modalImage"></div>
