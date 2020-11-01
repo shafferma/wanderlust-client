@@ -45,17 +45,13 @@ const RegistrationForm = (props) => {
     }
   };
 
-  const toggleModalOpen = () => {
-    setModalOpen(false);
-  };
-
   return (
     <div id="register" role="navigation">
       <Modal isOpen={props.open} id="registerModal">
         <ModalHeader className="modalHeader">
           <div id="mainTitle">Welcome to Wanderlust!</div>
           <div id="exitButton">
-            <Button id="registerExit" onClick={toggleModalOpen}>
+            <Button id="registerExit" onClick={props.close}>
               X
             </Button>
           </div>
