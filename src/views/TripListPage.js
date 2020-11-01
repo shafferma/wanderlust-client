@@ -52,12 +52,14 @@ const TripListPage = (props) => {
      */
 
     return (
-        <div >
-            <h1>Lets Make Some Lists</h1>
+        <div > 
+            
+            { //AN IDEA I WAS THINKING ABOUT 
+            /* <h1>Lets Make Some Lists</h1>
 
             <div className='lists'>
                 <div className='listView'>
-                
+            
                     <Button color='success' onClick={toggleModal}>
                         New List
                     </Button>
@@ -91,7 +93,7 @@ const TripListPage = (props) => {
                         <h1>You have no Lists </h1>
                     )
                     }                   
-                </div> 
+                </div>  */}
                 <div>
                     <Container>
                         <Card className="cards" >
@@ -108,7 +110,7 @@ const TripListPage = (props) => {
                     </Container>
                     <Container>
                         <Card className="cards">
-                            <CardBody >
+                            <CardBody>
                                 <CardTitle>Destination #2</CardTitle>
                                 <CardSubtitle>What </CardSubtitle>
                                 <CardBody>
@@ -145,8 +147,7 @@ const TripListPage = (props) => {
                             </CardBody>
                         </Card>
                     </Container>
-
-                    </div>
+                     </div>
                 </div>
     );
 };

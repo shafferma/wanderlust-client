@@ -1,34 +1,35 @@
 import React, { useState } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
-import ApiProvider from "../utils/ApiProvider";
-
-//Fetch url: https://wanderlust-travel-hhsk.herokuapp.com/user/login 
-
+//Fetch url: https://wanderlust-travel-hhsk.herokuapp.com/user/login
+import { useHistory } from "react-router-dom";
 
 const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
+  let history = useHistory();
 
-  let handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    //reset error to false when resubmitting
-    setError(false);
-
-    ApiProvider.post("/login", {
-      username,
-      password,
-    }) 
-      .then((response) => { //TODO once user logs in successfully redirects to..
-        props.updateToken(response.data.sessionToken);
-      })
-      .catch((error) => {
-        setError(error.response.data);
+    fetch("https://wanderlust-travel-hhsk.herokuapp.com/user/login", {
+      method: "POST",
+      body: JSON.stringify({
+        user: { username: username, password: password },
+      }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          alert("Login not valid, please try again");
+        } else {
+          props.updateToken(data.sessionToken);
+          history.push("/trips");
+        }
       });
   };
   return (
-
-     
     <div>
       <h1>Login</h1>
       <Form onSubmit={handleSubmit}>
@@ -50,7 +51,6 @@ const Login = (props) => {
           />
         </FormGroup>
         <Button type="submit">Login</Button>
-        {error ? <p style={{ color: "red" }}>{error}</p> : null}
       </Form>
     </div>
   );
