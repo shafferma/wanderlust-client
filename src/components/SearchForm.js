@@ -42,16 +42,8 @@ const SearchForm = () =>{
             let latitude = (data.lat)   //? WORKS
             
             
-            // let radius =(event) => {
-              
-            //       return radio1=true ? 1610
-            //       : radio2=true ? 8047 
-            //       : 16100
-                  
-            // };
-
-
-            let url2=`https://api.opentripmap.com/0.1/en/places/radius?radius=${radius}&lon=${longitude}&lat=${latitude}&kinds=stadiums&format=json&apikey=${key}`
+            
+            let url2=`https://api.opentripmap.com/0.1/en/places/radius?radius=${radius}&lon=${longitude}&lat=${latitude}&kinds=restaurants&format=json&apikey=${key}`
             console.log(url2);
 
             fetch(url2)
