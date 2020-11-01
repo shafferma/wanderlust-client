@@ -13,7 +13,7 @@ import {
 import { useHistory } from "react-router-dom";
 
 const Sitebar = (props) => {
-  const [collapsed, setCollapsed] = useState(true);
+const [collapsed, setCollapsed] = useState(true);
 
   const toggleNavbar = () => setCollapsed(!collapsed);
 
