@@ -44,7 +44,11 @@ function App() {
   return (
     <Router>
       <div>
-        <Navbar logout={clearToken} isLoggedIn={!!sessionToken} />
+        <Navbar
+          updateToken={updateToken}
+          logout={clearToken}
+          isLoggedIn={!!sessionToken}
+        />
         <Switch>
           <Route path="/login">
             <LoginPage updateToken={updateToken} />

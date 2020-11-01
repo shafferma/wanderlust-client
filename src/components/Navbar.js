@@ -70,7 +70,11 @@ const Sitebar = (props) => {
           </Nav>
         </Collapse>
       </Navbar>
-      <RegistrationForm open={showRegister} close={closeRegister} />
+      <RegistrationForm
+        updateToken={props.updateToken}
+        open={showRegister}
+        close={closeRegister}
+      />
     </div>
   );
 };

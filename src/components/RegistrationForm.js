@@ -11,7 +11,7 @@ import {
   ModalFooter,
 } from "reactstrap";
 // import ApiProvider from "../utils/ApiProvider";
-
+import { useHistory } from "react-router-dom";
 import "../styles/RegistrationForm.css";
 
 const RegistrationForm = (props) => {
@@ -19,6 +19,7 @@ const RegistrationForm = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  let history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -35,6 +36,7 @@ const RegistrationForm = (props) => {
           .then((data) => {
             props.updateToken(data.sessionToken);
             props.close();
+            history.push("/trips");
           })
           .catch((error) => console.log(error));
       } else {
