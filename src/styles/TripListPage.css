@@ -1,0 +1,9 @@
+.cards {
+  display: flex;
+  background-color: rgb(236, 179, 104);
+  width: 25%;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+
+}
+

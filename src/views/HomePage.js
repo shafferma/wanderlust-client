@@ -9,7 +9,8 @@ const HomePage = () => {
 
 
     return (
-        <div className="jumbotron">
+        <div className='mainDiv'>
+          <div className="jumbotron">
             <Container>
                 <h1 className="display-3">Welcome to Wanderlust!</h1>
                 <p className="lead">Your Travel Planning Destination.</p>
@@ -18,7 +19,8 @@ const HomePage = () => {
                 <p>Not your first time?, Welcome Back!!</p>
                 <Button><Link to="/login">Login Here!</Link></Button>
              </Container>
-        </div>
+          </div>
+        </div> 
     )
 }
 
