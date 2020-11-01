@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import '../styles/TripListPage.css'
 import { Card, CardBody, CardText, CardTitle, CardLink, CardSubtitle, Container, Button, Modal, ModalHeader, ModalBody, Label, Input, Form, FormGroup } from 'reactstrap'
+import "../components/SearchForm"
 import { Link } from 'react-router-dom';
 
 
@@ -39,13 +40,12 @@ const TripListPage = (props) => {
     }, [])
 
     /* TODO Notes
-    Cards(containter for api)
+   
     A way or fuction to transfer information
     Images for each destination???
     Do we want to to show on start up or / on toggle command?
 
-    const [tripLists, setTripList] = useState([])
-    const [listOpen, setListOpen] = useState(false);
+    
     
     
     
@@ -94,6 +94,7 @@ const TripListPage = (props) => {
                     )
                     }                   
                 </div>  */}
+                {/* {OR THIS} */}
                 <div>
                     <Container>
                         <Card className="cards" >
