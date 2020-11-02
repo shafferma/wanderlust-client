@@ -10,3 +10,8 @@
   position: center;
   padding-bottom: 15px;
 }
+
+.AppContainer {
+  position: relative;
+  padding-top: 57px;
+}

@@ -1,6 +1,20 @@
 #navbar {
-  background-color: rgb(181, 235, 235);
+  /* background-color:	rgb(122, 143, 136); */
   font-family: "Pacifico", cursive;
+  /* 'Montserrat', sans-serif; <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"> */
   font-size: 17px;
   letter-spacing: 0.05em;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+#navbar.is-expanded {
+  background-color: rgb(167, 193, 180);
+}
+
+#navbar a {
+  color: white;
 }
