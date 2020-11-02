@@ -37,7 +37,7 @@ const RegistrationForm = (props) => {
       if (password !== passwordConfirm) throw "Passwords do not match";
 
       // everything passes, submit data
-      fetch(process.env.REACT_APP_API_URL + "user/register", {
+      fetch(process.env.REACT_APP_API_URL + "/user/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
