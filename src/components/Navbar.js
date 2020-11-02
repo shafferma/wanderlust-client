@@ -11,17 +11,24 @@ import {
   Button,
 } from "reactstrap";
 import { useHistory } from "react-router-dom";
+import RegistrationForm from "./RegistrationForm";
 
 const Sitebar = (props) => {
-const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState(true);
+  const [showRegister, setShowRegister] = useState(false);
 
   const toggleNavbar = () => setCollapsed(!collapsed);
 
   let history = useHistory();
   const handleLogout = () => {
+    // clears token
     props.logout();
+    // direct user to the homepage
     history.push("/");
   };
+
+  const openRegister = () => setShowRegister(true);
+  const closeRegister = () => setShowRegister(false);
 
   return (
     <div id="navbar">
@@ -43,7 +50,7 @@ const [collapsed, setCollapsed] = useState(true);
                   <NavLink href="/login">Login</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="/register">Register</NavLink>
+                  <Button onClick={openRegister}>Register</Button>
                 </NavItem>
               </>
             ) : null}
@@ -63,6 +70,11 @@ const [collapsed, setCollapsed] = useState(true);
           </Nav>
         </Collapse>
       </Navbar>
+      <RegistrationForm
+        updateToken={props.updateToken}
+        open={showRegister}
+        close={closeRegister}
+      />
     </div>
   );
 };

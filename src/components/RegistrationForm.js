@@ -11,21 +11,21 @@ import {
   ModalFooter,
 } from "reactstrap";
 // import ApiProvider from "../utils/ApiProvider";
+import { useHistory } from "react-router-dom";
+import "../styles/RegistrationForm.css";
 
-import "../styles/RegistrationPage.css";
-
-const RegistrationPage = (props) => {
+const RegistrationForm = (props) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [modalOpen, setModalOpen] = useState(true);
+  let history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (username && email && password) {
       if (password === passwordConfirm) {
-        fetch(process.env.REACT_APP_API_URL + "/user/register", {
+        fetch(process.env.REACT_APP_API_URL + "user/register", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -35,7 +35,8 @@ const RegistrationPage = (props) => {
           .then((response) => response.json())
           .then((data) => {
             props.updateToken(data.sessionToken);
-            setModalOpen(false);
+            props.close();
+            history.push("/trips");
           })
           .catch((error) => console.log(error));
       } else {
@@ -46,9 +47,14 @@ const RegistrationPage = (props) => {
 
   return (
     <div id="register" role="navigation">
-      <Modal isOpen={modalOpen} id="registerModal">
+      <Modal isOpen={props.open} id="registerModal">
         <ModalHeader className="modalHeader">
-          Welcome to Wanderlust!
+          <div id="mainTitle">Welcome to Wanderlust!</div>
+          <div id="exitButton">
+            <Button id="registerExit" onClick={props.close}>
+              X
+            </Button>
+          </div>
         </ModalHeader>
         <ModalBody id="modalBody">
           <div id="modalImage"></div>
@@ -102,4 +108,4 @@ const RegistrationPage = (props) => {
   );
 };
 
-export default RegistrationPage;
+export default RegistrationForm;

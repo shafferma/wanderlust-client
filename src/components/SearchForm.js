@@ -1,18 +1,8 @@
-import React, {useState, useEffect} from 'react';
-import {Button, CustomInput, Form, FormGroup, Input, Label} from 'reactstrap';
-import '../styles/SearchForm.css';
-
-
-/*
-    - user enters location
-    - location then needs to be entered into getcoord location function to be able to grab longitude & latitude for anotherf fetch
-
-*/
+import React, { useState, useEffect } from "react";
+import { Button, CustomInput, Form, FormGroup, Input, Label } from "reactstrap";
+import "../styles/SearchForm.css";
 
 const SearchForm = () =>{
-    
-    // const [longitude,setLongitude]=useState('');
-    // const [latitude,setLatitude]=useState('');
     const [search, setSearch]=useState();
     const [radius, setRadius]=useState();
     const [kinds, setKinds]=useState();  
@@ -50,48 +40,8 @@ const SearchForm = () =>{
             // })
         })
     }
-/*
-    1. user types in location,
-    2. client then fires off a fetch to the api
-    3. client then brings back longitude & latitude
-    4. client then would push longitude and latitude to the next fetch
 
-*/
-    // useEffect(()=>{
-    //     getCoord();
-    // }, [])
-    
-    
-    // * https://api.opentripmap.com/0.1/en/places/geoname?name=muncie_indiana&apikey=5ae2e3f221c38a28845f05b647f834925ea24e44fb12d1cbd631c42a
-    // const handleSubmit handleSubmit=(e)=>{
-    //     e.preventDefault();
-
-    // }
-/*  - need separate fetches for each item below?
-
-import React, { useState, useEffect } from "react";
-import { Button, CustomInput, Form, FormGroup, Label } from "reactstrap";
-
-const SearchForm = (props) => {
-  //     const handleSubmit handleSubmit=(e)=>{
-  //         e.preventDefault();
-  //         fetch(api url)
-  //     }
-  /*  - need separate fetches for each item below?
-
-    - if accomodation = true then fetch from accomodation end point
-    - if amusement parks = true then fetch from amusment park end point
-    - etc, etc, etc
-    - nested if statements
-    ? do we choose location on this page or choose location on different page then get directed to this page
-    
-
-
-
-
-*/ 
-  
-    return (
+   return (
       <div>  
         <Form onSubmit={(event)=>getCoord(event)}>
           <FormGroup>
@@ -150,4 +100,3 @@ const SearchForm = (props) => {
 }
 
 export default SearchForm;
-
