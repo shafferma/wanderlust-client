@@ -25,7 +25,7 @@ const RegistrationForm = (props) => {
     event.preventDefault();
     if (username && email && password) {
       if (password === passwordConfirm) {
-        fetch(process.env.REACT_APP_API_URL + "/user/register", {
+        fetch(process.env.REACT_APP_API_URL + "user/register", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
