@@ -15,8 +15,8 @@ const SearchForm = () =>{
     // const [latitude,setLatitude]=useState('');
     const [search, setSearch]=useState();
     const [radius, setRadius]=useState();
-    
-    
+    const [kinds, setKinds]=useState();  
+
     
 
     const getCoord = (event) =>{
@@ -36,18 +36,18 @@ const SearchForm = () =>{
             
             
             
-            let url2=`https://api.opentripmap.com/0.1/en/places/radius?radius=${radius}&lon=${longitude}&lat=${latitude}&kinds=restaurants&format=json&apikey=${key}`
+            let url2=`https://api.opentripmap.com/0.1/en/places/radius?radius=${radius}&lon=${longitude}&lat=${latitude}&kinds=${kinds}&format=json&apikey=${key}`
             console.log(url2);
 
             fetch(url2)
             .then((response)=>response.json())
             
-            .then((data)=>{
-              for (let i=0; i<[].length; i++){
-                let info=[i].name;
-                console.log(info)
-              }
-            })
+            // .then((data)=>{
+            //   for (let i=0; i<[].length; i++){
+            //     let info=[i].name;
+            //     console.log(info)
+            //   }
+            // })
         })
     }
 /*
@@ -90,7 +90,7 @@ const SearchForm = (props) => {
 
 
 */ 
-
+  
     return (
       <div>  
         <Form onSubmit={(event)=>getCoord(event)}>
@@ -120,48 +120,33 @@ const SearchForm = (props) => {
             </Label>
           </FormGroup>
           
-          <Button type="submit">Click to Search</Button>   
-          
+     
+        <div className="buttonImage">
+        <Button type="submit" name="kinds" value ="accomodations"  onClick={(event)=>setKinds(event.target.value)}>Accomodations</Button>   
+          <Button type="submit" name="kinds" value ="amusements" onClick={(event)=>setKinds(event.target.value)} >Amusements</Button>   
+          <Button type="submit" name="kinds" value ="archaeology" onClick={(event)=>setKinds(event.target.value)} >Archaeological Sites</Button>   
+          <Button type="submit" name="kinds" value ="architecture" onClick={(event)=>setKinds(event.target.value)} >Architecture</Button>   
+          <Button type="submit" name="kinds" value ="beaches" onClick={(event)=>setKinds(event.target.value)} >Beaches</Button>   
+          <Button type="submit" name="kinds" value ="casino"  onClick={(event)=>setKinds(event.target.value)}>Casinos</Button>   
+          <Button type="submit" name="kinds" value ="burial_places" onClick={(event)=>setKinds(event.target.value)} >Cemeteries/War Memorials</Button>   
+          <Button type="submit" name="kinds" value ="urban_environment" onClick={(event)=>setKinds(event.target.value)} >Gardens/Parks</Button>   
+          <Button type="submit" name="kinds" value ="fuel" onClick={(event)=>setKinds(event.target.value)} >Gas Stations</Button>   
+          <Button type="submit" name="kinds" value ="geological_formations" onClick={(event)=>setKinds(event.target.value)} >Geological Formations</Button>   
+          <Button type="submit" name="kinds" value ="historic_architecture" onClick={(event)=>setKinds(event.target.value)} >Historical Landmarks</Button>   
+          <Button type="submit" name="kinds" value ="historical_places" onClick={(event)=>setKinds(event.target.value)} >Historical Places</Button>   
+          <Button type="submit" name="kinds" value ="alcohol" onClick={(event)=>setKinds(event.target.value)} >Liquor Stores</Button>   
+          <Button type="submit" name="kinds" value ="museums" onClick={(event)=>setKinds(event.target.value)} >Museums</Button>   
+          <Button type="submit" name="kinds" value ="natural" onClick={(event)=>setKinds(event.target.value)} >Nature</Button>   
+          <Button type="submit" name="kinds" value ="religion" onClick={(event)=>setKinds(event.target.value)} >Religious Buildings</Button>   
+          <Button type="submit" name="kinds" value ="foods" onClick={(event)=>setKinds(event.target.value)} >Restaurnts</Button>   
+          <Button type="submit" name="kinds" value ="shops" onClick={(event)=>setKinds(event.target.value)} >Shopping Outlets</Button>   
+          <Button type="submit" name="kinds" value ="sport" onClick={(event)=>setKinds(event.target.value)} >Sporting Activities, Stadiums</Button>   
+          <Button type="submit" name="kinds" value ="theatres_and_entertainments" onClick={(event)=>setKinds(event.target.value)} >Theaters</Button>   
+          <Button type="submit" name="kinds" value ="transport" onClick={(event)=>setKinds(event.target.value)} >Transportation</Button>   
+          </div>
         </Form> 
-      {/* <h2>Testing</h2>
-      <Form>
-            <FormGroup>
-                <Label>Select as many as you would like</Label>
-                    <CustomInput type="checkbox">Accomodations</CustomInput>
-                    <CustomInput type="checkbox">Amusement Parks</CustomInput>
-                    <CustomInput type="checkbox">Architecture</CustomInput>
-                    <CustomInput type="checkbox">ATM/Banks</CustomInput>
-                    <CustomInput type="checkbox">Beaches</CustomInput>
-                    <CustomInput type="checkbox">Entertainment</CustomInput>
-                    <CustomInput type="checkbox">Food</CustomInput>
-                    <CustomInput type="checkbox">Geological Formations (Canyons, Caves, Rock Formations, etc)</CustomInput>
-                    <CustomInput type="checkbox">Glaciers</CustomInput>
-                    <CustomInput type="checkbox">Industrial Facilities</CustomInput>
-                    <CustomInput type="checkbox">Islands</CustomInput>
-                    <CustomInput type="checkbox">Museums</CustomInput>
-                    <CustomInput type="checkbox">Natural Springs</CustomInput>
-                    <CustomInput type="checkbox">Nature Reserves</CustomInput>
-                    <CustomInput type="checkbox">Religious Structures</CustomInput>
-                    <CustomInput type="checkbox">Shoping</CustomInput>
-                    <CustomInput type="checkbox">Sports</CustomInput>
-                    <CustomInput type="checkbox">Transportation</CustomInput>
-                    <CustomInput type="checkbox">Urban Parks</CustomInput>
-                    <CustomInput type="checkbox">Water (canals, lakes, rivers, waterfalls)</CustomInput>
-            </FormGroup>
-            <Button type="submit">Click to Search</Button>   
-        </Form> */}
-      <p></p>
-        </div>
-      
-      
-        
-
-
-        
-        
-        
+      </div>
     )
-    
 }
 
 export default SearchForm;
