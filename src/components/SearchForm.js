@@ -7,11 +7,17 @@ const SearchForm = (props) => {
   const [radius, setRadius] = useState();
   const [kinds, setKinds] = useState();
   const [description, setDescription] = useState();
+  const [favResults, setFavorites] = useState([]);
 
   const [data, setData] = useState();
+<<<<<<< HEAD
   const [modal, setmodal]=useState(false);
   const toggle = ()=>setmodal(!modal);
   let favResults = [];
+=======
+
+  // let favResults = [];
+>>>>>>> 774812202d18d5f5defb9d1a90ccf00deef438e2
 
   const getCoord = (event) => {
     event.preventDefault();
@@ -87,16 +93,21 @@ function onShowPOI(data) {
 //!end NEW
 
   function addFavorite(value) {
-    favResults.push(value.name);
-    console.log(favResults);
+    console.log("value", value);
+    setFavorites(favResults.concat(value));
   }
+  console.log(favResults);
 
   const createTrip = (event) => {
     event.preventDefault();
     fetch("https://wanderlust-travel-hhsk.herokuapp.com/trips/new", {
       method: "POST",
       body: JSON.stringify({
-        trip: { location: search, description: description, sites: null },
+        trip: {
+          location: search,
+          description: description,
+          sites: JSON.stringify(favResults),
+        },
       }),
       headers: new Headers({
         "Content-Type": "application/json",
@@ -108,10 +119,6 @@ function onShowPOI(data) {
         console.log(res);
       });
   };
-
-  // useEffect(() => {
-  //   displayResults();
-  // }, [])
 
   return (
     <div>
