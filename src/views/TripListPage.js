@@ -19,155 +19,53 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
+
 const TripListPage = (props) => {
-  const [userLists, setUserList] = useState([]); //for creating user lists lists
-  const [modalOpen, setModalOpen] = useState(false);
+    const [triplist , setTripList] = useState([]);
+    const [updateList, setUpdateList] = useState(false);
+    const [deleteList, setDeleteList] = useState({});
 
-  const [newListTitle, setNewListTitle] = useState(""); // for creating new lists
+    const fetchSavedListItems = (props) => {
+        fetch('https://wanderlust-travel-hhsk.herokuapp.com/trips/all', {
+            method: "GET",
+            header: new Headers({
+                'Content-Type': "application/json",
+                'Authorizaton' : props.token
+            })
+        }).then((results => results.json())
+        .then((results) => {
+            setTripList(results)
+        }) 
+          
+      )}
+    const editSetUpdateList = (triplist) => {
+        setUpdateList(triplist);
+        console.log(props.results)
+    }
+    const updateOn = () => {
+        setUpdateList(true);
+    }
+    const updateOff = () => {
+        setUpdateList(false);
+    } 
+    useEffect(() => {
+        fetchSavedListItems();
+    }, [])
 
-  const modifyListTitle = (event) => setNewListTitle(event.target.value); //for changing the
-
-  const submitNewList = (event) => {
-    event.preventDefault();
-    setUserList([...userLists, { title: newListTitle }]);
-  };
-
-  const toggleModal = () => setModalOpen(!modalOpen);
-
-  useEffect(() => {
-    fetch("https://wanderlust-travel-hhsk.herokuapp.com/trips/new", {
-      method: "GET", 
-      headers: {
-        "Content-Type" : "application/json"
-      },
-    })
-      .then((response) => response.json())
-      .then((body) => {
-        setUserList(body.results);
-      })
-      .catch((error) => console.log(error));
-  }, []);
-
-  
-
-
-
-
-  /* TODO Notes
-    Cards(containter for api)
-    A way or fuction to transfer information
-    Images for each destination???
-    
-     */
-
-  return (
-    <div>
-      {
-        //AN IDEA I WAS THINKING ABOUT
-        /* <h1>Lets Make Some Lists</h1>
-
-            <div className='lists'>
-                <div className='listView'>
-            
-                    <Button color='success' onClick={toggleModal}>
-                        New List
-                    </Button>
-                    <Modal isOpen={modalOpen} toggle={toggleModal}>
-                        <ModalHeader>Create New List</ModalHeader>
-                        <ModalBody>
-                            <Form>
-                                <FormGroup>
-                                    <Label htmlFor='newTitle'>Title:</Label>
-                                    <Input type="text" id='newTitle' onChange={ modifyListTitle } value={newListTitle} />
-                                </FormGroup>
-                                </Form>
-                                <Button color="warning" onCick={toggleModal}></Button>
-                        </ModalBody>
-                    </Modal>
-                   </div>
-                   {
-                       userLists.legnth > 0
-                       ? userLists.map(item => {
-                           return (
-                                <Card>
-                                    <CardBody>
-                                        <CardTitle>{item.title}</CardTitle>
-                                     <CardText>{item.description}</CardText>
-                                     <Button>View List Items</Button>
-                                    </CardBody>
-                                </Card>
-                           )
-                       })
-                    :(
-                        <h1>You have no Lists </h1>
-                    )
-                    }                   
-                </div>  */
-      }
-      <div>
-        <Container>
-          <Card className="cards">
+    return (
+        <Card>
             <CardBody>
-              <CardTitle>Destination #1</CardTitle>
-              <CardSubtitle>What do I want to see?</CardSubtitle>
-              <CardBody>
-                <img src="/" alt="Destination image" />
-                <CardText>information about destination</CardText>
-                <Button outline color="secondary">
-                  <CardLink href="#">Link to API</CardLink>
-                </Button>
-              </CardBody>
+                <CardTitle>My Wandeful Destination</CardTitle>
+                <CardText>Destination Information</CardText>
+
             </CardBody>
-          </Card>
-        </Container>
-        <Container>
-          <Card className="cards">
-            <CardBody>
-              <CardTitle>Destination #2</CardTitle>
-              <CardSubtitle>What </CardSubtitle>
-              <CardBody>
-                <img src="/" alt="Destination image" />
-                <CardText>information about destination?</CardText>
-                <Button outline color="secondary">
-                  <CardLink href="#">Link to API</CardLink>
-                </Button>
-              </CardBody>
-            </CardBody>
-          </Card>
-        </Container>
-        <Container>
-          <Card className="cards">
-            <CardBody>
-              <CardTitle>Destination #3</CardTitle>
-              <CardSubtitle>What do I want to see?</CardSubtitle>
-              <CardBody>
-                <img src="/" alt="Destination image" />
-                <CardText>information about destination</CardText>
-                <Button outline color="secondary">
-                  <CardLink href="#">Link to API</CardLink>
-                </Button>
-              </CardBody>
-            </CardBody>
-          </Card>
-        </Container>
-        <Container>
-          <Card className="cards">
-            <CardBody>
-              <CardTitle>Destination #4</CardTitle>
-              <CardSubtitle>What do I want to see?</CardSubtitle>
-              <CardBody>
-                <img src="/" alt="Destination image" />
-                <CardText>information about destination</CardText>
-                <Button outline color="secondary">
-                  <CardLink href="#">Link to API</CardLink>
-                </Button>
-              </CardBody>
-            </CardBody>
-          </Card>
-        </Container>
-      </div>
-    </div>
-  );
-};
+        </Card>
+    )
+
+
+
+
+
+    }
 
 export default TripListPage;
