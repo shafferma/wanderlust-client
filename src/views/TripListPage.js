@@ -20,6 +20,7 @@ import {
 import { Link } from "react-router-dom";
 
 const TripListPage = (props) => {
+  console.log(props);
   const [userLists, setUserList] = useState([]); //for creating user lists lists
   const [modalOpen, setModalOpen] = useState(false);
 
