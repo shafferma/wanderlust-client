@@ -14,6 +14,9 @@ import {
 import { useHistory } from "react-router-dom";
 import "../styles/RegistrationForm.css";
 
+// checks if string has one special character or one number
+const validateUsername = RegExp("((?=.*?[0-9]).*|(?=.*?[#?!@$%^&*-]).*)");
+
 const RegistrationForm = (props) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -23,25 +26,38 @@ const RegistrationForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (username && email && password) {
-      if (password === passwordConfirm) {
-        fetch(process.env.REACT_APP_API_URL + "user/register", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ user: { username, email, password } }),
+
+    try {
+      // if fields not filled out, stop
+      if (!username || !email || !password) throw "Please fill out all fields";
+
+      // if password is too small, stop
+      if (password.length < 5) throw "Password must be 5 or more characters";
+
+      // if username
+      if (username.length < 4 || !validateUsername.test(username))
+        throw "Username must be 4 or more characters and include 1 number and/or special character";
+
+      // if password and passwordConfirm are not the same, stop
+      if (password !== passwordConfirm) throw "Passwords do not match";
+
+      // everything passes, submit data
+      fetch(process.env.REACT_APP_API_URL + "/user/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user: { username, email, password } }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          props.updateToken(data.sessionToken);
+          props.close();
+          history.push("/trips");
         })
-          .then((response) => response.json())
-          .then((data) => {
-            props.updateToken(data.sessionToken);
-            props.close();
-            history.push("/trips");
-          })
-          .catch((error) => console.log(error));
-      } else {
-        alert("Passwords do not match!");
-      }
+        .catch((error) => console.log(error));
+    } catch (error) {
+      alert(error);
     }
   };
 
@@ -50,11 +66,10 @@ const RegistrationForm = (props) => {
       <Modal isOpen={props.open} id="registerModal">
         <ModalHeader className="modalHeader">
           <div id="mainTitle">Welcome to Wanderlust!</div>
-          <div id="exitButton">
-            <Button id="registerExit" onClick={props.close}>
-              X
-            </Button>
-          </div>
+
+          <Button className="closeModal" onClick={props.close}>
+            <span>x</span>
+          </Button>
         </ModalHeader>
         <ModalBody id="modalBody">
           <div id="modalImage"></div>

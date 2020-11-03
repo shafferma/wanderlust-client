@@ -21,16 +21,17 @@ import { Link } from "react-router-dom";
 
 
 const TripListPage = (props) => {
+    console.log(props)
     const [triplist , setTripList] = useState([]);
-    const [updateList, setUpdateList] = useState(false);
-    const [deleteList, setDeleteList] = useState({});
+    const [updateList, setUpdateList] = useState(false); 
+    const [deleteList, setDeleteList] = useState({});  //Delete List 
 
     const fetchSavedListItems = (props) => {
         fetch('https://wanderlust-travel-hhsk.herokuapp.com/trips/all', {
             method: "GET",
-            header: new Headers({
+            headers: new Headers({
                 'Content-Type': "application/json",
-                'Authorizaton' : props.token
+                'Authorizaton' : props.token,
             })
         }).then((results => results.json())
         .then((results) => {
@@ -48,15 +49,19 @@ const TripListPage = (props) => {
     const updateOff = () => {
         setUpdateList(false);
     } 
-    useEffect(() => {
-        fetchSavedListItems();
-    }, [])
+    // useEffect(() => {
+    //     fetchSavedListItems();
+    // }, [])
 
+    
+
+     
     return (
-        <Card>
+        <Card className='cards'>
+
             <CardBody>
                 <CardTitle>My Wandeful Destination</CardTitle>
-                <CardText>Destination Information</CardText>
+                <CardText fetchSavedListItems={fetchSavedListItems} token={props.token}>Destination Information</CardText>
 
             </CardBody>
         </Card>

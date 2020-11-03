@@ -1,17 +1,25 @@
-.mainDiv {
+.page-home {
   background-image: url(../assets/palmtrees.jpg);
   height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
+  padding-top: 60px;
 }
 
 #landingTitle h1 {
   font-family: "Pacifico", cursive;
-  font-size: 95px;
+  font-size: 45px;
   color: rgb(214, 171, 105);
   text-shadow: 3px 3px black;
 }
 
 #landingTitle p {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/*  tablet */
+@media screen and (min-width: 768px) {
+  #landingTitle h1 {
+    font-size: 95px;
+  }
 }
