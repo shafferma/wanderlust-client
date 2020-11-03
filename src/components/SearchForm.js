@@ -7,10 +7,11 @@ const SearchForm = (props) => {
   const [radius, setRadius] = useState();
   const [kinds, setKinds] = useState();
   const [description, setDescription] = useState();
+  const [favResults, setFavorites] = useState([]);
 
   const [data, setData] = useState();
 
-  let favResults = [];
+  // let favResults = [];
 
   const getCoord = (event) => {
     event.preventDefault();
@@ -69,16 +70,21 @@ const SearchForm = (props) => {
   //         </tr>
 
   function addFavorite(value) {
-    favResults.push(value.name);
-    console.log(favResults);
+    console.log("value", value);
+    setFavorites(favResults.concat(value));
   }
+  console.log(favResults);
 
   const createTrip = (event) => {
     event.preventDefault();
     fetch("https://wanderlust-travel-hhsk.herokuapp.com/trips/new", {
       method: "POST",
       body: JSON.stringify({
-        trip: { location: search, description: description, sites: null },
+        trip: {
+          location: search,
+          description: description,
+          sites: JSON.stringify(favResults),
+        },
       }),
       headers: new Headers({
         "Content-Type": "application/json",
@@ -90,10 +96,6 @@ const SearchForm = (props) => {
         console.log(res);
       });
   };
-
-  // useEffect(() => {
-  //   displayResults();
-  // }, [])
 
   return (
     <div>
