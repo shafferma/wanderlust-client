@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, CustomInput, Form, FormGroup, Input, Label, Table } from "reactstrap";
+import { Button, CustomInput, Form, FormGroup, Input, Label, Modal, ModalBody, ModalHeader, Table } from "reactstrap";
 import "../styles/SearchForm.css";
 
 const SearchForm = (props) => {
@@ -9,7 +9,8 @@ const SearchForm = (props) => {
   const [description, setDescription] = useState();
 
   const [data, setData] = useState();
-
+  const [modal, setmodal]=useState(false);
+  const toggle = ()=>setmodal(!modal);
   let favResults = [];
 
   const getCoord = (event) => {
@@ -57,6 +58,7 @@ const SearchForm = (props) => {
     let key = process.env.REACT_APP_OPENTRIP_API_KEY;
     let xidURL =
       "https://api.opentripmap.com/0.1/en/places/xid/" + xid + "?apikey=" + key;
+  
     fetch(xidURL)
       .then((response) => response.json())
       .then((finalData) => console.log(finalData));
@@ -67,6 +69,22 @@ const SearchForm = (props) => {
   //             <td>{finalData.wikipedia_extracts.text}</td>
   //             <Button id="favItem" onClick={e => addFavorite(item)}>Heart</Button>
   //         </tr>
+//!NEW
+function onShowPOI(data) {
+  let poi = document.getElementById("poi");
+  poi.innerHTML = "";
+  if (data.preview) {
+    poi.innerHTML += `<img src="${data.preview.source}">`;
+  }
+  poi.innerHTML += data.wikipedia_extracts
+    ? data.wikipedia_extracts.html
+    : data.info
+    ? data.info.descr
+    : "No description";
+
+  poi.innerHTML += `<p><a target="_blank" href="${data.otm}">Show more at OpenTripMap</a></p>`;
+}
+//!end NEW
 
   function addFavorite(value) {
     favResults.push(value.name);
@@ -327,6 +345,14 @@ const SearchForm = (props) => {
             <Button type="submit">Create Trip</Button>
           </FormGroup>
         </Form>
+      </div>
+      <div>
+        <Button color="danger" onClick={toggle}>Save</Button>
+        <Modal isOpen={modal} toggle={toggle} >
+          <ModalHeader toggle={toggle}>TITLE</ModalHeader>
+          <ModalBody> {onShowPOI}</ModalBody>
+        </Modal>
+      
       </div>
     </div>
   );
