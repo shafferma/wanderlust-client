@@ -1,10 +1,11 @@
 #registerModal {
   margin-top: 5%;
-  width: 700px;
+  /* width: 700px; */
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02),
     0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035),
     0 22.3px 17.9px rgba(0, 0, 0, 0.042), 0 41.8px 33.4px rgba(0, 0, 0, 0.05),
     0 100px 80px rgba(0, 0, 0, 0.07);
+  max-width: 500px;
 }
 
 .modalHeader {
@@ -14,9 +15,14 @@
   color: black;
   text-shadow: 1px 2px white;
   letter-spacing: 0.1em;
+  position: relative;
+}
+
+.modal-title {
 }
 
 #modalImage {
+  display: none;
   background-image: url(../assets/registrationModalimage.jpg);
   height: 370px;
   background-size: contain;
@@ -26,14 +32,21 @@
 }
 
 #modalForm {
-  float: right;
-  width: 50%;
-  padding: 10px;
+  padding: 16px 20px 10px;
+}
+
+@media screen and (min-width: 768px) {
+  #modalImage {
+    display: block;
+  }
+  #modalForm {
+    float: right;
+    width: 50%;
+  }
 }
 
 #modalForm label {
-  font-family: "Pacifico", cursive;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
 }
 
 #modalBody {
@@ -47,7 +60,6 @@
 }
 
 #modalSubmitButton {
-  font-family: "Pacifico", cursive;
   background-color: #244c5a;
   width: 250px;
   letter-spacing: 0.15em;
@@ -64,14 +76,52 @@
   color: black;
 }
 
-#exitButton {
-  float: right;
-  margin-left: 60px;
+.closeModal {
+  position: absolute;
+  display: block;
+  top: -16px;
+  right: -16px;
+  width: 48px;
+  height: 48px;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  outline: none;
+  border: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.closeModal span {
+  position: relative;
+  z-index: 2;
+}
+
+.closeModal:after {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 28px;
+  height: 28px;
+  border-radius: 28px;
+  background: pink;
+  border: white solid 2px;
+  content: "";
+  display: block;
+  z-index: 1;
+}
+
+.closeModal:hover,
+.closeModal:active {
+  background: none;
 }
 
 #mainTitle {
-  float: left;
-  margin-left: 110px;
+  /* float: left; */
+  /* margin-left: 110px; */
 }
 
 #registerExit:hover {
