@@ -8,7 +8,7 @@ const HomePage = () => {
     <div className="mainDiv">
       <Container id="landingTitle">
         <h1 className="title">Wanderlust</h1>
-        <p className="sub-title">It's a wide world - go wandering.</p>
+        <p className="sub-title">It's a wide world. Go wandering.</p>
       </Container>
     </div>
   );

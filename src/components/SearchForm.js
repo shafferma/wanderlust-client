@@ -7,10 +7,11 @@ const SearchForm = (props) => {
   const [radius, setRadius] = useState();
   const [kinds, setKinds] = useState();
   const [description, setDescription] = useState();
+  const [favResults, setFavorites] = useState([]);
 
   const [data, setData] = useState();
 
-  let favResults = [];
+  // let favResults = [];
 
   const getCoord = (event) => {
     event.preventDefault();
@@ -26,81 +27,64 @@ const SearchForm = (props) => {
         let longitude = data.lon; //? WORKS
         let latitude = data.lat; //? WORKS
 
-        let url2 = `https://api.opentripmap.com/0.1/en/places/radius?radius=${radius}&lon=${longitude}&lat=${latitude}&kinds=${kinds}&format=json&apikey=${key}`;
+        let url2 = `https://api.opentripmap.com/0.1/en/places/radius?radius=${radius}&lon=${longitude}&lat=${latitude}&kinds=${kinds}&rate=2&format=json&limit=15&apikey=${key}`;
         // console.log(url2);
 
         fetch(url2)
           .then((response) => response.json())
-          // .then(data => setData(data)) <=== start of changes
-          .then((info) => getFinalInfo(info));
-
-        function getFinalInfo(info) {
-          let xIDarr = [];
-          if (info) {
-            info.map((item) => {
-              xIDarr.push(item.xid);
-            });
-            setData(xIDarr);
-          }
-        }
+          .then((data) => setData(data));
       });
+    console.log(data);
   };
-
-  //     const displayResults = () =>{
-  //       let xidList = [];
-  //       console.log(data);
-  //       if(data){
-  //         data.map(item => {
-  //           xidList.push(item.xid);
-  //         })}
-  //       console.log(xidList)
-  //       displayResults2(xidList);
-  //       }
-
-  //       const displayResults2 = (final) => {
-  //         let key = process.env.REACT_APP_OPENTRIP_API_KEY
-  //         return final.map((item, index) => {
-  //           let xidURL = `https://api.opentripmap.com/0.1/en/places/xid/${item}` + `&apikey=${key}`;
-  //           fetch(xidURL)
-  //           .then(response => response.json())
-  //           .then(finalData => console.log(finalData.image, finalData.info.desrc))
-  //             return(
-  //               <tr key={index}>
-  //                 <td>{item.name}</td>
-  //                 <td>{item.info.desrc}</td>
-  //                 <img src={item.image}/>
-  //                       <Button id="favItem" onClick={e => addFavorite(item)}>Heart</Button>
-  //                   </tr>
-  //                 )
-  //               })
 
   const displayResults = () => {
     console.log(data);
-    //   if(data){
-    //     return data.map((item, index) => {
-    //       return(
-    //         <tr key={index}>
-    //             <td>{item.name}</td>
-    //             <td>{item.kinds}</td>
-    //             <td>{item.rate}</td>
-    //             <Button id="favItem" onClick={e => addFavorite(item)}>Heart</Button>
-    //         </tr>
-    //       )
-    //     })
-    // }
+    return data.map((item, index) => {
+      return (
+        <tr key={index}>
+          <td>{item.name}</td>
+          <Button id="xidFetch" onClick={(e) => moreInfo(item.xid)}>
+            More Info
+          </Button>
+          <Button id="favItem" onClick={(e) => addFavorite(item.name)}>
+            Heart
+          </Button>
+        </tr>
+      );
+    });
   };
 
-  function addFavorite(value) {
-    favResults.push(value.name);
-    console.log(favResults);
+  function moreInfo(xid) {
+    let key = process.env.REACT_APP_OPENTRIP_API_KEY;
+    let xidURL =
+      "https://api.opentripmap.com/0.1/en/places/xid/" + xid + "?apikey=" + key;
+    fetch(xidURL)
+      .then((response) => response.json())
+      .then((finalData) => console.log(finalData));
   }
+
+  //             <td>{finalData.preview.source}</td>
+  //             <td>{finalData.name}</td>
+  //             <td>{finalData.wikipedia_extracts.text}</td>
+  //             <Button id="favItem" onClick={e => addFavorite(item)}>Heart</Button>
+  //         </tr>
+
+  function addFavorite(value) {
+    console.log("value", value);
+    setFavorites(favResults.concat(value));
+  }
+  console.log(favResults);
 
   const createTrip = (event) => {
     event.preventDefault();
     fetch("https://wanderlust-travel-hhsk.herokuapp.com/trips/new", {
       method: "POST",
       body: JSON.stringify({
-        trip: { location: search, description: description, sites: null },
+        trip: {
+          location: search,
+          description: description,
+          sites: JSON.stringify(favResults),
+        },
       }),
       headers: new Headers({
         "Content-Type": "application/json",
@@ -112,10 +96,6 @@ const SearchForm = (props) => {
         console.log(res);
       });
   };
-
-  useEffect(() => {
-    displayResults();
-  }, []);
 
   return (
     <div>
@@ -177,7 +157,7 @@ const SearchForm = (props) => {
             value="accomodations"
             onClick={(event) => setKinds(event.target.value)}
           >
-            Accomodations
+            <p>Accomodations</p>
           </Button>
           <Button
             id="amusements"
@@ -338,14 +318,7 @@ const SearchForm = (props) => {
         </div>
       </Form>
       <div>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Keywords</th>
-            <th>Vistor Rating</th>
-          </tr>
-        </thead>
-        <tbody>{displayResults()}</tbody>
+        <tbody>{data ? displayResults() : <></>}</tbody>
         <Form onSubmit={createTrip}>
           <FormGroup>
             <Input
