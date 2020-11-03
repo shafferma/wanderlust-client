@@ -2,66 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Button, CustomInput, Form, FormGroup, Input, Label, Table } from "reactstrap";
 import "../styles/SearchForm.css";
 
-<<<<<<< HEAD
-const SearchForm = () =>{
-    const [search, setSearch]=useState();
-    const [radius, setRadius]=useState();
-    const [kinds, setKinds]=useState();  
-    const [xid,setXid]=useState();
-    
-
-    const getCoord = (event) =>{
-        event.preventDefault();
-       
-        
-        let key = process.env.REACT_APP_OPENTRIP_API_KEY      
-        let url = `https://api.opentripmap.com/0.1/en/places/geoname?name=${search}&apikey=${key}`   //* WORKS?
-        console.log(url)
-
-        //? below fetch pulls longitude and latitude from the api, to be reused in another fetch function
-        fetch(url)  //? WORKS
-        .then((response)=>response.json())  //? WORKS
-        .then((data)=>{   //? WORKS
-            let longitude = (data.lon);   //? WORKS
-            let latitude = (data.lat)   //? WORKS
-            
-            
-            
-            let url2=`https://api.opentripmap.com/0.1/en/places/radius?radius=${radius}&lon=${longitude}&lat=${latitude}&kinds=${kinds}&format=json&apikey=${key}`
-            console.log(url2);
-
-            fetch(url2)
-            .then((response)=>response.json())
-            .then(data=>displayResults(data))
-            // .then((data)=>{
-            //   for (let i=0; i<[].length; i++){
-            //     let info=[i].name;
-            //     console.log(info)
-            //   }
-            // })
-        })
-    }
-    const displayResults = (data)=>{
-      console.log(data);
-      if(data){
-
-
-      return data.map((item, index)=>{
-        console.log(item.xid)
-        return(
-          <tr key={index}>
-            <td>{item.name}</td>
-            <td>{item.kinds}</td>
-            <td>{item.rate}</td>
-          </tr>
-        )
-      })
-      let xid=()=>setXid(data.xid);
-    }}
-   return (
-      <div>  
-        <Form onSubmit={(event)=>getCoord(event)}>
-=======
 const SearchForm = (props) => {
   const [search, setSearch] = useState();
   const [radius, setRadius] = useState();
@@ -181,7 +121,6 @@ const SearchForm = (props) => {
     <div>
       <Form onSubmit={(event) => getCoord(event)}>
         <div id="locationInput">
->>>>>>> 020bdaf7492735bb0859e207c6131f30aeba3b7d
           <FormGroup>
             <Label>Choose a location:</Label>
             <Input
@@ -231,48 +170,6 @@ const SearchForm = (props) => {
         </div>
 
         <div className="buttonImage">
-<<<<<<< HEAD
-          <Button type="submit" name="kinds" value ="accomodations"  onClick={(event)=>setKinds(event.target.value)}>Accomodations</Button>   
-          <Button type="submit" name="kinds" value ="amusements" onClick={(event)=>setKinds(event.target.value)} >Amusements</Button>   
-          <Button type="submit" name="kinds" value ="archaeology" onClick={(event)=>setKinds(event.target.value)} >Archaeological Sites</Button>   
-          <Button type="submit" name="kinds" value ="architecture" onClick={(event)=>setKinds(event.target.value)} >Architecture</Button>   
-          <Button type="submit" name="kinds" value ="beaches" onClick={(event)=>setKinds(event.target.value)} >Beaches</Button>   
-          <Button type="submit" name="kinds" value ="casino"  onClick={(event)=>setKinds(event.target.value)}>Casinos</Button>   
-          <Button type="submit" name="kinds" value ="burial_places" onClick={(event)=>setKinds(event.target.value)} >Cemeteries/War Memorials</Button>   
-          <Button type="submit" name="kinds" value ="urban_environment" onClick={(event)=>setKinds(event.target.value)} >Gardens/Parks</Button>   
-          <Button type="submit" name="kinds" value ="fuel" onClick={(event)=>setKinds(event.target.value)} >Gas Stations</Button>   
-          <Button type="submit" name="kinds" value ="geological_formations" onClick={(event)=>setKinds(event.target.value)} >Geological Formations</Button>   
-          <Button type="submit" name="kinds" value ="historic_architecture" onClick={(event)=>setKinds(event.target.value)} >Historical Landmarks</Button>   
-          <Button type="submit" name="kinds" value ="historical_places" onClick={(event)=>setKinds(event.target.value)} >Historical Places</Button>   
-          <Button type="submit" name="kinds" value ="alcohol" onClick={(event)=>setKinds(event.target.value)} >Liquor Stores</Button>   
-          <Button type="submit" name="kinds" value ="museums" onClick={(event)=>setKinds(event.target.value)} >Museums</Button>   
-          <Button type="submit" name="kinds" value ="natural" onClick={(event)=>setKinds(event.target.value)} >Nature</Button>   
-          <Button type="submit" name="kinds" value ="religion" onClick={(event)=>setKinds(event.target.value)} >Religious Buildings</Button>   
-          <Button type="submit" name="kinds" value ="foods" onClick={(event)=>setKinds(event.target.value)} >Restaurnts</Button>   
-          <Button type="submit" name="kinds" value ="shops" onClick={(event)=>setKinds(event.target.value)} >Shopping Outlets</Button>   
-          <Button type="submit" name="kinds" value ="sport" onClick={(event)=>setKinds(event.target.value)} >Sporting Activities, Stadiums</Button>   
-          <Button type="submit" name="kinds" value ="theatres_and_entertainments" onClick={(event)=>setKinds(event.target.value)} >Theaters</Button>   
-          <Button type="submit" name="kinds" value ="transport" onClick={(event)=>setKinds(event.target.value)} >Transportation</Button>   
-          </div>
-        </Form> 
-        <Table striped>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Result</th>
-                    <th>Description</th>
-                    <th>Definition</th>
-                </tr>
-            </thead>
-            <tbody>
-                {displayResults()}
-            </tbody>
-        </Table>
-      </div>
-      
-    )
-}
-=======
           <Button
             id="accomodations"
             type="submit"
@@ -463,6 +360,5 @@ const SearchForm = (props) => {
     </div>
   );
 };
->>>>>>> 020bdaf7492735bb0859e207c6131f30aeba3b7d
 
 export default SearchForm;
