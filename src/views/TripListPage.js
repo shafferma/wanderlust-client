@@ -21,10 +21,12 @@ import { Link } from "react-router-dom";
 
 
 const TripListPage = (props) => {
+
     console.log(props)
     const [triplist , setTripList] = useState([]);
     const [updateList, setUpdateList] = useState(false); 
     const [deleteList, setDeleteList] = useState({});  //Delete List 
+
 
     const fetchSavedListItems = (props) => {
         fetch('https://wanderlust-travel-hhsk.herokuapp.com/trips/all', {

@@ -6,6 +6,12 @@
   padding-top: 60px;
 }
 
+#landingTitle {
+  margin-top: 15%;
+  margin-left: 30%;
+  align-content: end;
+}
+
 #landingTitle h1 {
   font-family: "Pacifico", cursive;
   font-size: 45px;
@@ -14,12 +20,21 @@
 }
 
 #landingTitle p {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  padding-left: 15%;
+  font-size: 25px;
 }
 
 /*  tablet */
 @media screen and (min-width: 768px) {
   #landingTitle h1 {
     font-size: 95px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #landingTitle p {
+    font-size: 16px;
   }
 }
