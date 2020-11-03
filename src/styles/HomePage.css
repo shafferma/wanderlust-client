@@ -11,10 +11,15 @@
   font-size: 45px;
   color: rgb(214, 171, 105);
   text-shadow: 3px 3px black;
+  display: flex;
+  justify-content: center;
+  padding-top: 70px;
 }
 
 #landingTitle p {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
 }
 
 /*  tablet */
