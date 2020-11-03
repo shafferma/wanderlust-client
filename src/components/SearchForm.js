@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Button, CustomInput, Form, FormGroup, Input, Label } from "reactstrap";
+import { Button, CustomInput, Form, FormGroup, Input, Label, Table } from "reactstrap";
 import "../styles/SearchForm.css";
 
 const SearchForm = () =>{
     const [search, setSearch]=useState();
     const [radius, setRadius]=useState();
     const [kinds, setKinds]=useState();  
-
+    const [xid,setXid]=useState();
     
 
     const getCoord = (event) =>{
@@ -31,7 +31,7 @@ const SearchForm = () =>{
 
             fetch(url2)
             .then((response)=>response.json())
-            
+            .then(data=>displayResults(data))
             // .then((data)=>{
             //   for (let i=0; i<[].length; i++){
             //     let info=[i].name;
@@ -40,7 +40,23 @@ const SearchForm = () =>{
             // })
         })
     }
+    const displayResults = (data)=>{
+      console.log(data);
+      if(data){
 
+
+      return data.map((item, index)=>{
+        console.log(item.xid)
+        return(
+          <tr key={index}>
+            <td>{item.name}</td>
+            <td>{item.kinds}</td>
+            <td>{item.rate}</td>
+          </tr>
+        )
+      })
+      let xid=()=>setXid(data.xid);
+    }}
    return (
       <div>  
         <Form onSubmit={(event)=>getCoord(event)}>
@@ -72,7 +88,7 @@ const SearchForm = () =>{
           
      
         <div className="buttonImage">
-        <Button type="submit" name="kinds" value ="accomodations"  onClick={(event)=>setKinds(event.target.value)}>Accomodations</Button>   
+          <Button type="submit" name="kinds" value ="accomodations"  onClick={(event)=>setKinds(event.target.value)}>Accomodations</Button>   
           <Button type="submit" name="kinds" value ="amusements" onClick={(event)=>setKinds(event.target.value)} >Amusements</Button>   
           <Button type="submit" name="kinds" value ="archaeology" onClick={(event)=>setKinds(event.target.value)} >Archaeological Sites</Button>   
           <Button type="submit" name="kinds" value ="architecture" onClick={(event)=>setKinds(event.target.value)} >Architecture</Button>   
@@ -95,7 +111,21 @@ const SearchForm = () =>{
           <Button type="submit" name="kinds" value ="transport" onClick={(event)=>setKinds(event.target.value)} >Transportation</Button>   
           </div>
         </Form> 
+        <Table striped>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Result</th>
+                    <th>Description</th>
+                    <th>Definition</th>
+                </tr>
+            </thead>
+            <tbody>
+                {displayResults()}
+            </tbody>
+        </Table>
       </div>
+      
     )
 }
 
