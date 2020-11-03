@@ -36,8 +36,9 @@ const TripListPage = (props) => {
 
   useEffect(() => {
     fetch("https://wanderlust-travel-hhsk.herokuapp.com/trips/new", {
+      method: "GET", 
       headers: {
-        Authorization: props.token,
+        "Content-Type" : "application/json"
       },
     })
       .then((response) => response.json())
@@ -47,15 +48,15 @@ const TripListPage = (props) => {
       .catch((error) => console.log(error));
   }, []);
 
+  
+
+
+
+
   /* TODO Notes
     Cards(containter for api)
     A way or fuction to transfer information
     Images for each destination???
-    Do we want to to show on start up or / on toggle command?
-
-    
-    
-    
     
      */
 
