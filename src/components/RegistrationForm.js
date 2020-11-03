@@ -14,6 +14,9 @@ import {
 import { useHistory } from "react-router-dom";
 import "../styles/RegistrationForm.css";
 
+// checks if string has one special character or one number
+const validateUsername = RegExp("((?=.*?[0-9]).*|(?=.*?[#?!@$%^&*-]).*)");
+
 const RegistrationForm = (props) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -31,7 +34,9 @@ const RegistrationForm = (props) => {
       // if password is too small, stop
       if (password.length < 5) throw "Password must be 5 or more characters";
 
-      // if (username.length < 4 || ) throw 'Username must be 4 or more characters and include 1 number and/or special character'
+      // if username
+      if (username.length < 4 || !validateUsername.test(username))
+        throw "Username must be 4 or more characters and include 1 number and/or special character";
 
       // if password and passwordConfirm are not the same, stop
       if (password !== passwordConfirm) throw "Passwords do not match";
@@ -61,11 +66,10 @@ const RegistrationForm = (props) => {
       <Modal isOpen={props.open} id="registerModal">
         <ModalHeader className="modalHeader">
           <div id="mainTitle">Welcome to Wanderlust!</div>
-          <div id="exitButton">
-            <Button id="registerExit" onClick={props.close}>
-              X
-            </Button>
-          </div>
+
+          <Button className="closeModal" onClick={props.close}>
+            <span>x</span>
+          </Button>
         </ModalHeader>
         <ModalBody id="modalBody">
           <div id="modalImage"></div>
