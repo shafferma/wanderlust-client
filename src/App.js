@@ -12,6 +12,7 @@ import LoginPage from "./views/LoginPage";
 import SearchForm from "./components/SearchForm";
 import TripViewPage from "./views/TripViewPage";
 import TripListPage from "./views/TripListPage";
+import AppContainer from "./components/AppContainer";
 
 const AUTH = {
   isAuthenticated: false,
@@ -43,7 +44,7 @@ function App() {
 
   return (
     <Router>
-      <div>
+      <AppContainer>
         <Navbar
           updateToken={updateToken}
           logout={clearToken}
@@ -54,19 +55,19 @@ function App() {
             <LoginPage updateToken={updateToken} />
           </Route>
           <PrivateRoute path="/trips/:id">
-            <TripViewPage />
+            <TripViewPage token={sessionToken} />
           </PrivateRoute>
           <PrivateRoute path="/trips">
-            <TripListPage />
+            <TripListPage token={sessionToken} />
           </PrivateRoute>
           <Route path="/search">
-            <SearchForm />
+            <SearchForm token={sessionToken} />
           </Route>
           <Route path="/">
             <HomePage />
           </Route>
         </Switch>
-      </div>
+      </AppContainer>
     </Router>
   );
 }

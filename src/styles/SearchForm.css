@@ -1,10 +1,104 @@
-.radioButtons{
-    
-    margin-left: 30px;
+.radioButtons {
+  margin-left: 30px;
 }
-.kind{
-    color: red;
-    padding-top: 50px;
-    margin-left:auto;
-    margin-right: auto;
+.kind {
+  color: red;
+  padding-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
 }
+
+#locationInput {
+  width: 25%;
+  float: left;
+}
+
+.buttonImage {
+  width: 75%;
+  float: right;
+}
+
+.buttonImage button {
+  width: 175px;
+  height: 125px;
+  font-family: "Sansita Swashed", cursive;
+  font-size: 20px;
+  text-shadow: 2px 2px black;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 5px;
+}
+
+.buttonImage button p {
+  background-color: rgba(13, 139, 139, 0.6);
+  border-radius: 5px;
+}
+/* 
+#beaches{
+    background-image: url(../assets/beach.jpg);
+}
+
+#amusements{
+    background-image: url(../assets/amusements.jpg);
+}
+
+#geology{
+    background-image: url(../assets/geology.jpg);
+}
+
+#accomodations{
+    background-image: url(../assets/accomodations.jpg);
+}
+
+#parks{
+    background-image: url(../assets/parks.jpg);
+}
+
+#religious{
+    background-image: url(../assets/religious.jpg);
+}
+
+#archaeology{
+    background-image: url(../assets/archaeology.jpg);
+}
+
+#architecture{
+    background-image: url(../assets/architecture.jpg);
+}
+
+#casino{
+    background-image: url(../assets/casino.jpg);
+}
+#landmarks{
+    background-image: url(../assets/rushmore.jpg);
+}
+#historicalPlaces{
+    background-image: url(../assets/temple.jpg);
+}
+
+#memorials{
+    background-image: url(../assets/memorial.jpg);
+}
+#museum{
+    background-image: url(../assets/museum.jpg);
+}
+
+#nature{
+    background-image: url(../assets/nature.jpg);
+}
+
+#restaurant{
+    background-image: url(../assets/restaurant.jpg);
+}
+
+#shopping{
+    background-image: url(../assets/shopping.jpg);
+}
+
+#sports{
+    background-image: url(../assets/sports.jpg);
+}
+
+#theater{
+    background-image: url(../assets/theater.jpg);
+} */
