@@ -11,7 +11,7 @@ const Login = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch(process.env.REACT_APP_API_URL + "/user/login", {
+    fetch(process.env.REACT_APP_API_URL + "user/login", {
       method: "POST",
       body: JSON.stringify({
         user: { username: username, password: password },

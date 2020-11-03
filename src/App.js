@@ -54,13 +54,13 @@ function App() {
             <LoginPage updateToken={updateToken} />
           </Route>
           <PrivateRoute path="/trips/:id">
-            <TripViewPage />
+            <TripViewPage token={sessionToken} />
           </PrivateRoute>
           <PrivateRoute path="/trips">
-            <TripListPage />
+            <TripListPage token={sessionToken} />
           </PrivateRoute>
           <Route path="/search">
-            <SearchForm />
+            <SearchForm token={sessionToken} />
           </Route>
           <Route path="/">
             <HomePage />
