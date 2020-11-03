@@ -10,14 +10,8 @@ const SearchForm = (props) => {
   const [favResults, setFavorites] = useState([]);
 
   const [data, setData] = useState();
-<<<<<<< HEAD
-  const [modal, setmodal]=useState(false);
-  const toggle = ()=>setmodal(!modal);
-  let favResults = [];
-=======
 
   // let favResults = [];
->>>>>>> 774812202d18d5f5defb9d1a90ccf00deef438e2
 
   const getCoord = (event) => {
     event.preventDefault();
@@ -75,22 +69,8 @@ const SearchForm = (props) => {
   //             <td>{finalData.wikipedia_extracts.text}</td>
   //             <Button id="favItem" onClick={e => addFavorite(item)}>Heart</Button>
   //         </tr>
-//!NEW
-function onShowPOI(data) {
-  let poi = document.getElementById("poi");
-  poi.innerHTML = "";
-  if (data.preview) {
-    poi.innerHTML += `<img src="${data.preview.source}">`;
-  }
-  poi.innerHTML += data.wikipedia_extracts
-    ? data.wikipedia_extracts.html
-    : data.info
-    ? data.info.descr
-    : "No description";
 
-  poi.innerHTML += `<p><a target="_blank" href="${data.otm}">Show more at OpenTripMap</a></p>`;
-}
-//!end NEW
+
 
   function addFavorite(value) {
     console.log("value", value);
