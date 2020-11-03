@@ -47,3 +47,10 @@
 #loginButton:hover {
   background-color: rgb(96, 199, 199);
 }
+
+/*  tablet */
+/* @media screen and (min-width: 768px) {
+  #login {
+    font-size: 95px;
+  }
+} */
