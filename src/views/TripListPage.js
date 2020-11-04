@@ -10,7 +10,6 @@ import {
   CardTitle,
   CardLink,
   CardSubtitle,
-  Container,
   Button,
   Modal,
   ModalHeader,
@@ -22,7 +21,6 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
-
 
 const TripListPage = (props) => {
   console.log(props);
@@ -51,7 +49,6 @@ const TripListPage = (props) => {
     setUpdateActive(true);
   };
 
-
   const updateOff = () => {
     setUpdateActive(false);
   };
@@ -63,7 +60,7 @@ const TripListPage = (props) => {
   useEffect(() => {
     fetchAllTrips();
   }, []);
-  
+  const [modalOpen, setModalOpen] = useState();
   const toggleModal = () => setModalOpen(!modalOpen);
   const { addToast } = useToasts();
   // useEffect(() => {
@@ -78,7 +75,7 @@ const TripListPage = (props) => {
     })
       .then((response) => response.json())
       .then((body) => {
-        setUserList(body.results);
+        setUserTrips(body.results);
         addToast("Saved Successfully", { appearance: "success" });
       })
       .catch((error) => {

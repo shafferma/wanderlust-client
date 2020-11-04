@@ -23,6 +23,8 @@ const SearchForm = (props) => {
   const [moreName, setMoreName] = useState();
   const [moreImg, setMoreImg] = useState();
   const [moreText, setMoreText] = useState();
+  const [moreAddress, setMoreAddress] = useState();
+  const [openTripMap, setOpenTripMap] = useState();
   const [modalOpen, setModalOpen] = useState(false);
 
   /* End*/
@@ -43,7 +45,7 @@ const SearchForm = (props) => {
         let longitude = data.lon; //? WORKS
         let latitude = data.lat; //? WORKS
 
-        let url2 = `https://api.opentripmap.com/0.1/en/places/radius?radius=${radius}&lon=${longitude}&lat=${latitude}&kinds=${kinds}&rate=2&format=json&limit=15&apikey=${key}`;
+        let url2 = `https://api.opentripmap.com/0.1/en/places/radius?radius=${radius}&lon=${longitude}&lat=${latitude}&kinds=${kinds}&format=json&limit=25&apikey=${key}`;
         // console.log(url2);
 
         fetch(url2)
@@ -74,13 +76,29 @@ const SearchForm = (props) => {
     let key = process.env.REACT_APP_OPENTRIP_API_KEY;
     let xidURL =
       "https://api.opentripmap.com/0.1/en/places/xid/" + xid + "?apikey=" + key;
-  
+
     fetch(xidURL)
       .then((response) => response.json())
       .then((finalData) => {
+        console.log(finalData);
         setMoreName(finalData.name);
-        setMoreImg(finalData.preview.source);
-        setMoreText(finalData.text);
+        // setMoreImg(finalData.preview.source);
+        setMoreImg(
+          finalData.preview == null ? <p>TEST</p> : finalData.preview.source
+        );
+        setMoreText(
+          finalData.wikipedia_extracts == null ? (
+            <p> No description available</p>
+          ) : (
+            finalData.wikipedia_extracts.text
+          )
+        );
+
+        // setMoreText(finalData.wikipedia_extracts.text);
+        setOpenTripMap(finalData.otm);
+        setMoreAddress(
+          `${finalData.address.house_number} ${finalData.address.road}`
+        );
         setModalOpen(true);
       });
   }
@@ -88,8 +106,6 @@ const SearchForm = (props) => {
   const toggleModal = (e) => {
     setModalOpen(false);
   };
-
-
 
   function addFavorite(value) {
     console.log("value", value);
@@ -344,8 +360,16 @@ const SearchForm = (props) => {
           <ModalHeader>{moreName}</ModalHeader>
           <Button onClick={toggleModal}>X</Button>
           <ModalBody>
-            <img src={`${moreImg}`} />
+            <p>
+              <b>{moreAddress}</b>
+            </p>
+            <img src={`${moreImg}`} alt="" />
             <p>{moreText}</p>
+            <p>
+              <a target="_blank" href={openTripMap}>
+                See location at OpenTripMap
+              </a>
+            </p>
           </ModalBody>
         </Modal>
         <tbody>{data ? displayResults() : <></>}</tbody>
@@ -359,14 +383,6 @@ const SearchForm = (props) => {
             <Button type="submit">Create Trip</Button>
           </FormGroup>
         </Form>
-      </div>
-      <div>
-        <Button color="danger" onClick={toggle}>Save</Button>
-        <Modal isOpen={modal} toggle={toggle} >
-          <ModalHeader toggle={toggle}>TITLE</ModalHeader>
-          <ModalBody> {onShowPOI}</ModalBody>
-        </Modal>
-      
       </div>
     </div>
   );
