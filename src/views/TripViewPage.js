@@ -22,7 +22,7 @@ const TripViewPage = (props) => {
         "Content-Type": "application/json",
         Authorization: token,
       }),
-    }).then(() => props.fetchAllTrips());
+    }).then(() => props.fetchTrips());
   };
 
   const tripMapper = () => {
