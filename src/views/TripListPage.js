@@ -18,6 +18,7 @@ import {
   FormGroup,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import { useToasts } from "react-toast-notifications";
 
 const TripListPage = (props) => {
   console.log(props);
@@ -34,8 +35,12 @@ const TripListPage = (props) => {
   };
 
   const toggleModal = () => setModalOpen(!modalOpen);
-
-  useEffect(() => {
+  const { addToast } = useToasts();
+  // useEffect(() => {
+  //   addToast("Saved Successfully", { appearance: "success" });
+  // }, []);
+  // form submission handling
+  const onSubmit = async (value) => {
     fetch("https://wanderlust-travel-hhsk.herokuapp.com/trips/new", {
       headers: {
         Authorization: props.token,
@@ -44,9 +49,12 @@ const TripListPage = (props) => {
       .then((response) => response.json())
       .then((body) => {
         setUserList(body.results);
+        addToast("Saved Successfully", { appearance: "success" });
       })
-      .catch((error) => console.log(error));
-  }, []);
+      .catch((error) => {
+        addToast(error.message, { appearance: "error" });
+      });
+  };
 
   /* TODO Notes
     Cards(containter for api)
