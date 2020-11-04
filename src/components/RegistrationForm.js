@@ -34,7 +34,7 @@ const RegistrationForm = (props) => {
       // if password is too small, stop
       if (password.length < 5) throw "Password must be 5 or more characters";
 
-      // if username
+      // if username does not have 4 or more characters and/or number or special character
       if (username.length < 4 || !validateUsername.test(username))
         throw "Username must be 4 or more characters and include 1 number and/or special character";
 

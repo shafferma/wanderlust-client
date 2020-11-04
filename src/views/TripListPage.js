@@ -3,6 +3,26 @@ import "../styles/TripListPage.css";
 import { Container, Col } from "reactstrap";
 import TripViewPage from "./TripViewPage";
 import TripEdit from "./TripEdit";
+import {
+  Card,
+  CardBody,
+  CardText,
+  CardTitle,
+  CardLink,
+  CardSubtitle,
+  Container,
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  Label,
+  Input,
+  Form,
+  FormGroup,
+} from "reactstrap";
+import { Link } from "react-router-dom";
+import { useToasts } from "react-toast-notifications";
+
 
 const TripListPage = (props) => {
   console.log(props);
@@ -31,6 +51,7 @@ const TripListPage = (props) => {
     setUpdateActive(true);
   };
 
+
   const updateOff = () => {
     setUpdateActive(false);
   };
@@ -42,6 +63,28 @@ const TripListPage = (props) => {
   useEffect(() => {
     fetchAllTrips();
   }, []);
+  
+  const toggleModal = () => setModalOpen(!modalOpen);
+  const { addToast } = useToasts();
+  // useEffect(() => {
+  //   addToast("Saved Successfully", { appearance: "success" });
+  // }, []);
+  // form submission handling
+  const onSubmit = async (value) => {
+    fetch("https://wanderlust-travel-hhsk.herokuapp.com/trips/new", {
+      headers: {
+        Authorization: props.token,
+      },
+    })
+      .then((response) => response.json())
+      .then((body) => {
+        setUserList(body.results);
+        addToast("Saved Successfully", { appearance: "success" });
+      })
+      .catch((error) => {
+        addToast(error.message, { appearance: "error" });
+      });
+  };
 
   return (
     <div>
