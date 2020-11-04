@@ -26,7 +26,7 @@ const TripEdit = (props) => {
         }),
       }
     ).then((response) => {
-      // props.fetchAllTrips();
+      props.fetchAllTrips();
       props.updateOff();
     });
   };
@@ -37,9 +37,15 @@ const TripEdit = (props) => {
       <ModalBody>
         <Form onSubmit={tripUpdate}>
           <FormGroup>
-            <Button>ASAP!</Button>
-            <Button>This year</Button>
-            <Button>Someday</Button>
+            <Button type="submit" onClick={(e) => setRating(5)}>
+              5 - ASAP!
+            </Button>
+            <Button type="submit" onClick={(e) => setRating(3)}>
+              3 - This year
+            </Button>
+            <Button type="submit" onClick={(e) => setRating(1)}>
+              1 - Someday
+            </Button>
           </FormGroup>
         </Form>
       </ModalBody>
