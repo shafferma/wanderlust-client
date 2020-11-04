@@ -104,6 +104,8 @@ const SearchForm = (props) => {
   const [moreName, setMoreName] = useState();
   const [moreImg, setMoreImg] = useState();
   const [moreText, setMoreText] = useState();
+  const [moreAddress, setMoreAddress] = useState();
+  const [openTripMap, setOpenTripMap] = useState();
   const [modalOpen, setModalOpen] = useState(false);
 
   /* End*/
@@ -160,12 +162,34 @@ const SearchForm = (props) => {
     let key = process.env.REACT_APP_OPENTRIP_API_KEY;
     let xidURL =
       "https://api.opentripmap.com/0.1/en/places/xid/" + xid + "?apikey=" + key;
+
     fetch(xidURL)
       .then((response) => response.json())
       .then((finalData) => {
+        console.log(finalData);
         setMoreName(finalData.name);
+
+        // setMoreImg(finalData.preview.source);
+        setMoreImg(
+          finalData.preview == null ? <p>TEST</p> : finalData.preview.source
+        );
+        setMoreText(
+          finalData.wikipedia_extracts == null ? (
+            <p> No description available</p>
+          ) : (
+            finalData.wikipedia_extracts.text
+          )
+        );
+
+        // setMoreText(finalData.wikipedia_extracts.text);
+        setOpenTripMap(finalData.otm);
+        setMoreAddress(
+          `${finalData.address.house_number} ${finalData.address.road}`
+        );
+
         setMoreImg(finalData.preview.source);
         setMoreText(finalData.wikipedia_extracts.text);
+
         setModalOpen(true);
       });
   }
@@ -276,8 +300,16 @@ const SearchForm = (props) => {
           <ModalHeader>{moreName}</ModalHeader>
           <Button onClick={toggleModal}>X</Button>
           <ModalBody>
-            <img src={`${moreImg}`} />
+            <p>
+              <b>{moreAddress}</b>
+            </p>
+            <img src={`${moreImg}`} alt="" />
             <p>{moreText}</p>
+            <p>
+              <a target="_blank" href={openTripMap}>
+                See location at OpenTripMap
+              </a>
+            </p>
           </ModalBody>
         </Modal>
         {/* 
