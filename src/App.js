@@ -27,7 +27,7 @@ function App() {
       AUTH.isAuthenticated = true;
     }
 
-    console.info("use", sessionToken, AUTH);
+    // console.info("use", sessionToken, AUTH);
   }, [sessionToken]);
 
   const updateToken = (newToken) => {
@@ -58,7 +58,7 @@ function App() {
             <TripViewPage token={sessionToken} />
           </PrivateRoute>
           <PrivateRoute path="/trips">
-            <TripListPage token={sessionToken} />
+            <TripListPage token={sessionToken} updateToken={updateToken} />
           </PrivateRoute>
           <Route path="/search">
             <SearchForm token={sessionToken} />
@@ -75,7 +75,7 @@ function App() {
 // A wrapper for <Route> that redirects to the login
 // screen if you're not yet authenticated.
 function PrivateRoute({ children, ...rest }) {
-  console.info("sessionToken", localStorage.getItem("token"));
+  // console.info("sessionToken", localStorage.getItem("token"));
   return (
     <Route
       {...rest}

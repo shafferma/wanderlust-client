@@ -13,37 +13,46 @@ import {
 import "../styles/TripViewPage.css";
 
 const TripViewPage = (props) => {
-  //     const deleteTripInfo = (tripInfo) =>{  //! need to change tripinfo
-  //             fetch(`http://localhost:3000/log/${tripInfo.id}`,{  //! need to change tripinfo
-  //                 method: 'DELETE',
-  //                 headers: new Headers({
-  //                     'Content-Type': 'application/json',
-  //                     'Authorization': props.token
-  //                 })
-  //             })
-  //             .then(()=>props.fetchTrips())  //! need to change
-  //         }
+  console.log(props);
+  const { trips, fetchTrips, token, editUpdateTrip } = props;
+  const deleteTrip = (trip) => {
+    fetch(`https://wanderlust-travel-hhsk.herokuapp.com/trips/${trip.id}`, {
+      method: "DELETE",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: token,
+      }),
+    });
+    // .then(() => props.fetchAllTrips())
+  };
 
-  // const tripMapper =()=>{
-  //         return props.tripInfo.map((tripInfo,index)=>{  {/*//! need to change tripInfo*/}
-  //             return(
-  //                 <tr key={index}>
-  //                     <th scope="row">{tripInfo.id}</th> {/*//! need to change tripInfo*/}
-  //                     <td>{tripInfo.result}</td> {//! need to change tripInfo}
-  //                     <td>{tripInfo.description}</td> {/*//! need to change tripInfo*/}
-  //                     <td>{tripInfo.definition}</td>{/*//! need to change tripInfo*/}
-  //                     <td>
-  //                         <Button color="warning" onClick={()=>{props.editUpdateTrip(tripInfo);props.updateOn()}}>Update</Button> {/*//!may need to change editUpdateTrip and tripInfo*/}
-  //                         <Button color="danger" onClick={()=>{deleteTripInfo(tripInfo)}}>Delete</Button>  {/*//! may need to chagne deleteTripInfo & tripInfo*/}
-  //                     </td>
-  //                 </tr>
-  //             )
-  //         })
-  //     }
+  const tripMapper = () => {
+    return trips.map((trip, index) => {
+      return (
+        <tr key={index}>
+          <th scope="row">{trip.location}</th>
+          <td>{trip.description}</td>
+          <td>{trip.sites}</td>
+          <td>{trip.rating}</td>
+          <td>
+            {/* <Button color="warning" onClick={() => {editUpdateTrip(trip); props.updateOn()}}>Update</Button> */}
+            <Button
+              color="danger"
+              onClick={() => {
+                deleteTrip(trip);
+              }}
+            >
+              Delete
+            </Button>
+          </td>
+        </tr>
+      );
+    });
+  };
 
   return (
     <>
-      <h3>Trip </h3>
+      <h3>My Trips</h3>
       <hr />
       <Container className="tripViewTable">
         <div id="tripTable">
@@ -52,36 +61,16 @@ const TripViewPage = (props) => {
               <Table striped width="250%">
                 <thead>
                   <tr>
-                    <th>#</th>
-                    <th>Trip Information</th>
-                    <th>Possible other Info</th>
-                    <th>More Possible Info</th>
+                    <th>Location</th>
+                    <th>Description</th>
+                    <th>Sites to See</th>
+                    <th>Interest</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <td>1</td>
-                  <td>jjki;lkjl;ajldfj;</td>
-                  <td>kjljiljklj</td>
-                  <td>kjoilqqdial</td>
-
-                  {/* {tripMapper()} */}
+                  {trips ? tripMapper() : <h1>See Your Saved Trips Here!</h1>}
                 </tbody>
               </Table>
-            </Card>
-          </CardColumns>
-        </div>
-
-        <div>
-          <CardColumns>
-            <Card md="4">
-              <CardBody>
-                <CardImg
-                  id="tripImage"
-                  top
-                  width="75%"
-                  src="https://live.staticflickr.com/65535/50542803582_c630c193af_c.jpg"
-                ></CardImg>
-              </CardBody>
             </Card>
           </CardColumns>
         </div>
