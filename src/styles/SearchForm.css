@@ -9,8 +9,9 @@
 }
 
 #locationInput {
-  width: 25%;
-  float: left;
+  /* width: 25%;
+  float: left; */
+  font-family: "Montserrat", sans-serif;
 }
 
 .buttonImage {
@@ -101,3 +102,12 @@
 #theater{
     background-image: url(../assets/theater.jpg);
 } */
+
+@media screen and (min-width: 360px) {
+  #locationInput {
+    /* width: 25%;
+  float: left; */
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+  }
+}
