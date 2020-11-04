@@ -26,7 +26,7 @@ const TripEdit = (props) => {
         }),
       }
     ).then((response) => {
-      // props.fetchAllTrips();
+      props.fetchAllTrips();
       props.updateOff();
     });
   };

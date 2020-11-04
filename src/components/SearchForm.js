@@ -17,6 +17,7 @@ import { useToasts } from "react-toast-notifications";
 // useEffect(() => {
 //   addToast("Saved Successfully", { appearance: "success" });
 // }, []);
+
 const CATEGORIES = [
   {
     value: "accomodations",
