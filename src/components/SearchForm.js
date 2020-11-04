@@ -12,6 +12,85 @@ import {
 } from "reactstrap";
 import "../styles/SearchForm.css";
 
+// const { addToast } = useToasts();
+// useEffect(() => {
+//   addToast("Saved Successfully", { appearance: "success" });
+// }, []);
+const CATEGORIES = [
+  {
+    value: "accomodations",
+    label: "Accomodations",
+  },
+  {
+    value: "amusements",
+    label: "Amusements",
+  },
+  {
+    value: "archaeology",
+    label: "Archaeological Sites",
+  },
+  {
+    value: "architecture",
+    label: "Architecture",
+  },
+  {
+    value: "beaches",
+    label: "Beaches",
+  },
+  {
+    value: "casino",
+    label: "Casinos",
+  },
+  {
+    value: "burial_places",
+    label: "Cemeteries/ Memorials",
+  },
+  {
+    value: "urban_environment",
+    label: "Parks",
+  },
+  {
+    value: "geological_formations",
+    label: "Geological Formations",
+  },
+  {
+    value: "historic_architecture",
+    label: "Historical Landmarks",
+  },
+  {
+    value: "historical_places",
+    label: "Historical Places",
+  },
+  {
+    value: "museums",
+    label: "Museums",
+  },
+  {
+    value: "natural",
+    label: "Nature",
+  },
+  {
+    value: "religion",
+    label: "Religious Buildings",
+  },
+  {
+    value: "foods",
+    label: "Restaurants",
+  },
+  {
+    value: "shops",
+    label: "Shopping",
+  },
+  {
+    value: "sport",
+    label: "Sports",
+  },
+  {
+    value: "theatres_and_entertainments",
+    label: "Theaters",
+  },
+];
+
 const SearchForm = (props) => {
   const [search, setSearch] = useState();
   const [radius, setRadius] = useState();
@@ -79,7 +158,7 @@ const SearchForm = (props) => {
       .then((finalData) => {
         setMoreName(finalData.name);
         setMoreImg(finalData.preview.source);
-        setMoreText(finalData.text);
+        setMoreText(finalData.wikipedia_extracts.text);
         setModalOpen(true);
       });
   }
@@ -114,6 +193,20 @@ const SearchForm = (props) => {
       .then((res) => {
         console.log(res);
       });
+  };
+
+  const createCategoryButtons = () => {
+    return CATEGORIES.map((c, index) => (
+      <Button
+        key={index}
+        id={c.value}
+        type="submit"
+        name="kinds"
+        onClick={() => setKinds(c.value)}
+      >
+        <p>{c.label}</p>
+      </Button>
+    ));
   };
 
   return (
@@ -168,173 +261,7 @@ const SearchForm = (props) => {
           </FormGroup>
         </div>
 
-        <div className="buttonImage">
-          <Button
-            id="accomodations"
-            type="submit"
-            name="kinds"
-            value="accomodations"
-            onClick={(event) => setKinds(event.target.value)}
-          >
-            <p>Accomodations</p>
-          </Button>
-          <Button
-            id="amusements"
-            type="submit"
-            name="kinds"
-            value="amusements"
-            onClick={(event) => setKinds(event.target.value)}
-          >
-            <p>Amusements</p>
-          </Button>
-          <Button
-            id="archaeology"
-            type="submit"
-            name="kinds"
-            value="archaeology"
-            onClick={(event) => setKinds(event.target.value)}
-          >
-            <p>Archaeological Sites</p>
-          </Button>
-          <Button
-            id="architecture"
-            type="submit"
-            name="kinds"
-            value="architecture"
-            onClick={(event) => setKinds(event.target.value)}
-          >
-            <p>Architecture</p>
-          </Button>
-          <Button
-            id="beaches"
-            type="submit"
-            name="kinds"
-            value="beaches"
-            onClick={(event) => setKinds(event.target.value)}
-          >
-            <p>Beaches</p>
-          </Button>
-          <Button
-            id="casino"
-            type="submit"
-            name="kinds"
-            value="casino"
-            onClick={(event) => setKinds(event.target.value)}
-          >
-            <p>Casinos</p>
-          </Button>
-          <Button
-            id="memorials"
-            type="submit"
-            name="kinds"
-            value="burial_places"
-            onClick={(event) => setKinds(event.target.value)}
-          >
-            <p>Cemeteries/ Memorials</p>
-          </Button>
-          <Button
-            id="parks"
-            type="submit"
-            name="kinds"
-            value="urban_environment"
-            onClick={(event) => setKinds(event.target.value)}
-          >
-            <p>Parks</p>
-          </Button>
-          {/* <Button type="submit" name="kinds" value ="fuel" onClick={(event)=>setKinds(event.target.value)} >Gas Stations</Button>    */}
-          <Button
-            id="geology"
-            type="submit"
-            name="kinds"
-            value="geological_formations"
-            onClick={(event) => setKinds(event.target.value)}
-          >
-            <p>Geological Formations</p>
-          </Button>
-          <Button
-            id="landmarks"
-            type="submit"
-            name="kinds"
-            value="historic_architecture"
-            onClick={(event) => setKinds(event.target.value)}
-          >
-            <p>Historical Landmarks</p>
-          </Button>
-          <Button
-            id="historicalPlaces"
-            type="submit"
-            name="kinds"
-            value="historical_places"
-            onClick={(event) => setKinds(event.target.value)}
-          >
-            <p>Historical Places</p>
-          </Button>
-          {/* <Button type="submit" name="kinds" value ="alcohol" onClick={(event)=>setKinds(event.target.value)} >Liquor Stores</Button>    */}
-          <Button
-            id="museum"
-            type="submit"
-            name="kinds"
-            value="museums"
-            onClick={(event) => setKinds(event.target.value)}
-          >
-            <p>Museums</p>
-          </Button>
-          <Button
-            id="nature"
-            type="submit"
-            name="kinds"
-            value="natural"
-            onClick={(event) => setKinds(event.target.value)}
-          >
-            <p>Nature</p>
-          </Button>
-          <Button
-            id="religious"
-            type="submit"
-            name="kinds"
-            value="religion"
-            onClick={(event) => setKinds(event.target.value)}
-          >
-            <p>Religious Buildings</p>
-          </Button>
-          <Button
-            id="restaurant"
-            type="submit"
-            name="kinds"
-            value="foods"
-            onClick={(event) => setKinds(event.target.value)}
-          >
-            <p>Restaurants</p>
-          </Button>
-          <Button
-            id="shopping"
-            type="submit"
-            name="kinds"
-            value="shops"
-            onClick={(event) => setKinds(event.target.value)}
-          >
-            <p>Shopping</p>
-          </Button>
-          <Button
-            id="sports"
-            type="submit"
-            name="kinds"
-            value="sport"
-            onClick={(event) => setKinds(event.target.value)}
-          >
-            <p>Sports</p>
-          </Button>
-          <Button
-            id="theater"
-            type="submit"
-            name="kinds"
-            value="theatres_and_entertainments"
-            onClick={(event) => setKinds(event.target.value)}
-          >
-            <p>Theaters</p>
-          </Button>
-          {/* <Button type="submit" name="kinds" value ="transport" onClick={(event)=>setKinds(event.target.value)} >Transportation</Button>    */}
-        </div>
+        <div className="buttonImage">{createCategoryButtons()}</div>
       </Form>
       <div>
         <Modal isOpen={modalOpen}>
@@ -345,7 +272,14 @@ const SearchForm = (props) => {
             <p>{moreText}</p>
           </ModalBody>
         </Modal>
-        <tbody>{data ? displayResults() : <></>}</tbody>
+        {/* 
+          A tbody cannot live inside of a <div> container... 
+          it must live inside of a <table> 
+          ... be sure to define a <thead> with columns
+        */}
+        <table>
+          <tbody>{data?.length ? displayResults() : <></>}</tbody>
+        </table>
         <Form onSubmit={createTrip}>
           <FormGroup>
             <Input

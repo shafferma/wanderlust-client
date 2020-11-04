@@ -55,25 +55,27 @@ const TripViewPage = (props) => {
       <h3>My Trips</h3>
       <hr />
       <Container className="tripViewTable">
-        <div id="tripTable">
-          <CardColumns>
-            <Card md="8">
-              <Table striped width="250%">
-                <thead>
-                  <tr>
-                    <th>Location</th>
-                    <th>Description</th>
-                    <th>Sites to See</th>
-                    <th>Interest</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {trips ? tripMapper() : <h1>See Your Saved Trips Here!</h1>}
-                </tbody>
-              </Table>
-            </Card>
-          </CardColumns>
-        </div>
+        {trips?.length ? (
+          <div id="tripTable">
+            <CardColumns>
+              <Card md="8">
+                <Table striped width="250%">
+                  <thead>
+                    <tr>
+                      <th>Location</th>
+                      <th>Description</th>
+                      <th>Sites to See</th>
+                      <th>Interest</th>
+                    </tr>
+                  </thead>
+                  <tbody>{tripMapper()}</tbody>
+                </Table>
+              </Card>
+            </CardColumns>
+          </div>
+        ) : (
+          <h1>See Your Saved Trips Here!</h1>
+        )}
       </Container>
     </>
   );

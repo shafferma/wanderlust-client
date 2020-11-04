@@ -9,7 +9,7 @@ function AppContainer({ children, ...rest }) {
 
   return (
     <ToastProvider>
-      <div class={className} {...rest}>
+      <div className={className} {...rest}>
         {children}
       </div>
     </ToastProvider>

@@ -31,7 +31,7 @@ const Sitebar = (props) => {
   const closeRegister = () => setShowRegister(false);
 
   return (
-    <div id="navbar" class={!collapsed ? "is-expanded" : ""}>
+    <div id="navbar" className={!collapsed ? "is-expanded" : ""}>
       <Navbar color="faded" light expand="md">
         <NavbarBrand href="/" className="mr-auto"></NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
