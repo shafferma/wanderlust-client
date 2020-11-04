@@ -28,7 +28,7 @@ const TripListPage = (props) => {
   const [userTrips, setUserTrips] = useState([]);
   const [updateActive, setUpdateActive] = useState(false);
   const [tripToUpdate, setTripToUpdate] = useState({});
-  const [modalOpen, setModalOpen] = useState();
+  const [modalOpen, setModalOpen] = useState(false);
 
   const fetchAllTrips = () => {
     fetch("https://wanderlust-travel-hhsk.herokuapp.com/trips/all", {
@@ -97,6 +97,7 @@ const TripListPage = (props) => {
                 fetchTrips={fetchAllTrips}
                 token={props.token}
                 editUpdateTrip={editUpdateTrip}
+                updateOn={updateOn}
               />
             ) : null}
           </Col>

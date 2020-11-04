@@ -22,8 +22,7 @@ const TripViewPage = (props) => {
         "Content-Type": "application/json",
         Authorization: token,
       }),
-    });
-    // .then(() => props.fetchAllTrips())
+    }).then(() => props.fetchAllTrips());
   };
 
   const tripMapper = () => {
@@ -35,7 +34,15 @@ const TripViewPage = (props) => {
           <td>{trip.sites}</td>
           <td>{trip.rating}</td>
           <td>
-            {/* <Button color="warning" onClick={() => {editUpdateTrip(trip); props.updateOn()}}>Update</Button> */}
+            <Button
+              color="warning"
+              onClick={() => {
+                editUpdateTrip(trip);
+                props.updateOn();
+              }}
+            >
+              Update
+            </Button>
             <Button
               color="danger"
               onClick={() => {

@@ -11,6 +11,7 @@ import {
   ModalHeader,
 } from "reactstrap";
 import "../styles/SearchForm.css";
+import { useToasts } from "react-toast-notifications";
 
 // const { addToast } = useToasts();
 // useEffect(() => {
@@ -108,6 +109,11 @@ const SearchForm = (props) => {
 
   const [data, setData] = useState();
 
+  const { addToast } = useToasts();
+  // useEffect(() => {
+  //   addToast("Saved Successfully", { appearance: "success" });
+  // }, []);
+
   const getCoord = (event) => {
     event.preventDefault();
     let key = process.env.REACT_APP_OPENTRIP_API_KEY;
@@ -122,7 +128,7 @@ const SearchForm = (props) => {
         let longitude = data.lon; //? WORKS
         let latitude = data.lat; //? WORKS
 
-        let url2 = `https://api.opentripmap.com/0.1/en/places/radius?radius=${radius}&lon=${longitude}&lat=${latitude}&kinds=${kinds}&rate=2&format=json&limit=15&apikey=${key}`;
+        let url2 = `https://api.opentripmap.com/0.1/en/places/radius?radius=${radius}&lon=${longitude}&lat=${latitude}&kinds=${kinds}&format=json&limit=25&apikey=${key}`;
         // console.log(url2);
 
         fetch(url2)
@@ -192,6 +198,7 @@ const SearchForm = (props) => {
       .then((response) => response.json())
       .then((res) => {
         console.log(res);
+        addToast("Saved Successfully", { appearance: "success" });
       });
   };
 
