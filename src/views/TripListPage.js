@@ -5,6 +5,7 @@ import TripEdit from "./TripEdit";
 import {
   Card,
   Col,
+  Container,
   CardBody,
   CardText,
   CardTitle,
@@ -59,17 +60,14 @@ const TripListPage = (props) => {
   }
 
   useEffect(() => {
-
-    fetchAllTrips();
-  }, []);
-  const [modalOpen, setModalOpen] = useState();
+    //   fetchAllTrips();
+    // }, []);
 
     if (props.token) fetchAllTrips();
   }, [props.token]);
 
-
   const toggleModal = () => setModalOpen(!modalOpen);
-  // const { addToast } = useToasts();
+  const { addToast } = useToasts();
   // useEffect(() => {
   //   addToast("Saved Successfully", { appearance: "success" });
   // }, []);
@@ -106,7 +104,6 @@ const TripListPage = (props) => {
   //       addToast(error.message, { appearance: "error" });
   //     });
   // };
-
 
   return (
     <div>
