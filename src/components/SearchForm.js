@@ -1,5 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Button, CustomInput, Form, FormGroup, Input, Label } from "reactstrap";
+import {
+  Button,
+  CustomInput,
+  Form,
+  FormGroup,
+  Input,
+  Label,
+  Modal,
+  ModalBody,
+  ModalHeader,
+} from "reactstrap";
 import "../styles/SearchForm.css";
 
 const SearchForm = (props) => {
@@ -9,9 +19,15 @@ const SearchForm = (props) => {
   const [description, setDescription] = useState();
   const [favResults, setFavorites] = useState([]);
 
-  const [data, setData] = useState();
+  /* Start*/
+  const [moreName, setMoreName] = useState();
+  const [moreImg, setMoreImg] = useState();
+  const [moreText, setMoreText] = useState();
+  const [modalOpen, setModalOpen] = useState(false);
 
-  // let favResults = [];
+  /* End*/
+
+  const [data, setData] = useState();
 
   const getCoord = (event) => {
     event.preventDefault();
@@ -60,14 +76,17 @@ const SearchForm = (props) => {
       "https://api.opentripmap.com/0.1/en/places/xid/" + xid + "?apikey=" + key;
     fetch(xidURL)
       .then((response) => response.json())
-      .then((finalData) => console.log(finalData));
+      .then((finalData) => {
+        setMoreName(finalData.name);
+        setMoreImg(finalData.preview.source);
+        setMoreText(finalData.text);
+        setModalOpen(true);
+      });
   }
 
-  //             <td>{finalData.preview.source}</td>
-  //             <td>{finalData.name}</td>
-  //             <td>{finalData.wikipedia_extracts.text}</td>
-  //             <Button id="favItem" onClick={e => addFavorite(item)}>Heart</Button>
-  //         </tr>
+  const toggleModal = (e) => {
+    setModalOpen(false);
+  };
 
   function addFavorite(value) {
     console.log("value", value);
@@ -318,6 +337,14 @@ const SearchForm = (props) => {
         </div>
       </Form>
       <div>
+        <Modal isOpen={modalOpen}>
+          <ModalHeader>{moreName}</ModalHeader>
+          <Button onClick={toggleModal}>X</Button>
+          <ModalBody>
+            <img src={`${moreImg}`} />
+            <p>{moreText}</p>
+          </ModalBody>
+        </Modal>
         <tbody>{data ? displayResults() : <></>}</tbody>
         <Form onSubmit={createTrip}>
           <FormGroup>
