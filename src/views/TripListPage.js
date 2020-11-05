@@ -59,12 +59,12 @@ const TripListPage = (props) => {
     fetchAllTrips();
   }
 
-  useEffect(() => {
-    //   fetchAllTrips();
-    // }, []);
+  // useEffect(() => {
+  //   fetchAllTrips();
+  // }, []);
 
-    if (props.token) fetchAllTrips();
-  }, [props.token]);
+  //   if (props.token) fetchAllTrips();
+  // }, [props.token]);
 
   const toggleModal = () => setModalOpen(!modalOpen);
   const { addToast } = useToasts();

@@ -307,7 +307,7 @@ const SearchForm = (props) => {
               <p>
                 <b>{moreAddress}</b>
               </p>
-              <img src={`${moreImg}`} alt="" />
+              <img src={`${moreImg}`} alt="No Photo Available" />
               <p>{moreText}</p>
               <p>
                 <a target="_blank" href={openTripMap}>
@@ -334,16 +334,18 @@ const SearchForm = (props) => {
           <table>
             <tbody>{data?.length ? displayResults() : <></>}</tbody>
           </table>
-          <Form onSubmit={createTrip}>
-            <FormGroup>
-              <Input
-                onChange={(e) => setDescription(e.target.value)}
-                value={description}
-                placeholder="Trip description (ex. Anniversary)"
-              ></Input>
-              <Button type="submit">Create Trip</Button>
-            </FormGroup>
-          </Form>
+          <div className="tripCreate">
+            <Form onSubmit={createTrip}>
+              <FormGroup>
+                <Input
+                  onChange={(e) => setDescription(e.target.value)}
+                  value={description}
+                  placeholder="Trip description (ex. Anniversary)"
+                ></Input>
+                <Button type="submit">Create Trip</Button>
+              </FormGroup>
+            </Form>
+          </div>
         </div>
       </div>
     </div>

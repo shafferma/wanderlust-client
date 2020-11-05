@@ -23,8 +23,8 @@
   margin-right: auto;
   font-family: "Pacifico", cursive;
   font-size: 30px;
-  color: rgb(214, 171, 105);
-  text-shadow: 3px 3px black;
+  color: rgb(233, 188, 120);
+  /* text-shadow: 3px 3px black; */
 }
 /* #distanceRadius{
     color: red;
@@ -39,7 +39,6 @@
   /* width: 25%;
   float: left; */
   font-family: "Montserrat", sans-serif;
-
 }
 .buttonImage {
   width: 100%;
@@ -48,7 +47,7 @@
 
 .buttonImage button {
   width: 175px;
-  height: 75px;
+  height: 100px;
   font-size: 20px;
   text-shadow: 2px 2px black;
   background-size: cover;
@@ -61,77 +60,92 @@
   border-radius: 5px;
 }
 
-/* #beaches{
-    background-image: url(../assets/beach.jpg);
-} */
-
-/* #amusements{
-    background-image: url(../assets/amusements.jpg);
-} */
-
-/* #geology{
-    background-image: url(../assets/geology.jpg);
-} */
-
-#accomodations {
-  background-image: url(../assets/hotel.jpg);
+#beaches {
+  background-image: url(../assets/beaches.jpg);
 }
 
-/* #parks{
-    background-image: url(../assets/parks.jpg);
-} */
+#amusements {
+  background-image: url(../assets/amusement.jpg);
+}
 
-/* #religious{
-    background-image: url(../assets/religious.jpg);
-} */
+#geological_formations {
+  background-image: url(../assets/geology.jpg);
+}
 
-/* #archaeology{
-    background-image: url(../assets/archaeology.jpg);
-} */
+#accomodations {
+  background-image: url(../assets/hotel2.jpg);
+}
 
-/* #architecture{
-    background-image: url(../assets/architecture.jpg);
-} */
+#urban_environment {
+  background-image: url(../assets/park.jpg);
+}
 
-/* #casino{
-    background-image: url(../assets/casino.jpg);
-} */
+#religion {
+  background-image: url(../assets/religion.jpg);
+}
 
-/* #landmarks{
-    background-image: url(../assets/rushmore.jpg);
-} */
+#archaeology {
+  background-image: url(../assets/archaeology.jpg);
+}
 
-/* #historicalPlaces{
-    background-image: url(../assets/temple.jpg);
-} */
+#architecture {
+  background-image: url(../assets/architecture.jpg);
+}
 
-/* #memorials{
-    background-image: url(../assets/memorial.jpg);
-} */
+#casino {
+  background-image: url(../assets/casino.jpg);
+}
 
-/* #museum{
-    background-image: url(../assets/museum.jpg);
-} */
+#historic_architecture {
+  background-image: url(../assets/rushmore.jpg);
+}
 
-/* #nature{
-    background-image: url(../assets/nature.jpg);
-} */
+#historical_places {
+  background-image: url(../assets/temple.jpg);
+}
 
-/* #restaurant{
-    background-image: url(../assets/restaurant.jpg);
-} */
+#burial_places {
+  background-image: url(../assets/memorial.jpg);
+}
 
-/* #shopping{
-    background-image: url(../assets/shopping.jpg);
-} */
+#museums {
+  background-image: url(../assets/museum.jpg);
+}
 
-/* #sports{
-    background-image: url(../assets/sports.jpg);
-} */
+#natural {
+  background-image: url(../assets/nature.jpg);
+}
 
-/* #theater{
-    background-image: url(../assets/theater.jpg);
-} */
+#foods {
+  background-image: url(../assets/restaurant.jpg);
+}
+
+#shops {
+  background-image: url(../assets/shopping.jpg);
+}
+
+#sport {
+  background-image: url(../assets/sports.jpg);
+}
+
+#theatres_and_entertainments {
+  background-image: url(../assets/theater.jpg);
+}
+table {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 350px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 30px;
+  color: rgb(231, 185, 114);
+  border-radius: 15px;
+}
+
+.tripCreate {
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 @media screen and (min-width: 360px) {
   #locationInput {
