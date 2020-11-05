@@ -143,10 +143,19 @@ const SearchForm = (props) => {
       return (
         <tr key={index}>
           <td>{item.name}</td>
-          <Button id="xidFetch" onClick={(e) => moreInfo(item.xid)}>
-            More Info
-          </Button>
-          <Button id="favItem" onClick={(e) => addFavorite(item.name)}></Button>
+          <div className="infoBtn">
+            <Button size="sm" id="xidFetch" onClick={(e) => moreInfo(item.xid)}>
+              More Info
+            </Button>
+            <Button
+              size="sm"
+              color="warning"
+              id="favItem"
+              onClick={(e) => addFavorite(item.name)}
+            >
+              Add to trip
+            </Button>
+          </div>
         </tr>
       );
     });

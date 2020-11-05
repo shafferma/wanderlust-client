@@ -1,4 +1,3 @@
-
 body {
   margin: 0;
   padding: 0;
@@ -33,7 +32,7 @@ body {
 }
 
 body {
-  background-image: url("../assets/palmtrees.jpg");
+  /* background-image: url("../assets/palmtrees.jpg"); */
   height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
@@ -84,8 +83,6 @@ body {
   justify-content: center;
 }
 
-
-
 /*  tablet */
 /* @media screen and (min-width: 260px) {
     .tripViewTable{
@@ -94,4 +91,3 @@ body {
         
     }
   } */
-

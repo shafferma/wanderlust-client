@@ -59,20 +59,15 @@ const TripListPage = (props) => {
     fetchAllTrips();
   }
 
-  // useEffect(() => {
-  //   fetchAllTrips();
-  // }, []);
-
-  //   if (props.token) fetchAllTrips();
-  // }, [props.token]);
+  useEffect(() => {
+    if (props.token) fetchAllTrips();
+  }, [props.token]);
 
   const toggleModal = () => setModalOpen(!modalOpen);
   const { addToast } = useToasts();
-  // useEffect(() => {
-  //   addToast("Saved Successfully", { appearance: "success" });
-  // }, []);
-  // form submission handling
 
+  // form submission handling
+  // TODO :: this isnt being used at all....
   const onSubmit = async (value) => {
     fetch("https://wanderlust-travel-hhsk.herokuapp.com/trips/new", {
       headers: {

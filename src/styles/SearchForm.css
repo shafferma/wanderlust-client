@@ -2,10 +2,25 @@
   background-image: url("../assets/heart.png");
   background-repeat: no-repeat;
   background-size: 20px;
-  padding-bottom: 35px;
-  background-color: transparent;
+  padding-top: 1%;
+  padding-right: 9%;
+  padding-left: 19px;
+  /* background-color: transparent; */
   border: transparent;
+  margin-bottom: 5%;
 }
+
+#xidFetch {
+  margin-bottom: 8%;
+  padding-top: 2%;
+}
+
+.infoBtn {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+}
+
 .searchform {
   margin-left: auto;
   margin-right: auto;
@@ -48,7 +63,7 @@
 table {
   margin-right: auto;
   margin-left: auto;
-  margin-top: 350px;
+  /* margin-top: 350px; */
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 30px;
   color: rgb(231, 185, 114);
@@ -59,6 +74,7 @@ table {
   width: 25%;
   margin-left: auto;
   margin-right: auto;
+  padding-top: 20px;
 }
 
 @media screen and (min-width: 360px) {
