@@ -24,6 +24,13 @@ const RegistrationForm = (props) => {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   let history = useHistory();
 
+  const resetForm = () => {
+    setUsername("");
+    setEmail("");
+    setPassword("");
+    setPasswordConfirm("");
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -53,6 +60,7 @@ const RegistrationForm = (props) => {
         .then((data) => {
           props.updateToken(data.sessionToken);
           props.close();
+          resetForm();
           history.push("/trips");
         })
         .catch((error) => console.log(error));
