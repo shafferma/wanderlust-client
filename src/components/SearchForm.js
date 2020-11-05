@@ -13,11 +13,6 @@ import {
 import "../styles/SearchForm.css";
 import { useToasts } from "react-toast-notifications";
 
-// const { addToast } = useToasts();
-// useEffect(() => {
-//   addToast("Saved Successfully", { appearance: "success" });
-// }, []);
-
 const CATEGORIES = [
   {
     value: "accomodations",
@@ -99,6 +94,7 @@ const SearchForm = (props) => {
   const [kinds, setKinds] = useState();
   const [description, setDescription] = useState();
   const [favResults, setFavorites] = useState([]);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
 
   /* Start*/
   const [moreName, setMoreName] = useState();
@@ -162,17 +158,10 @@ const SearchForm = (props) => {
     let key = process.env.REACT_APP_OPENTRIP_API_KEY;
     let xidURL =
       "https://api.opentripmap.com/0.1/en/places/xid/" + xid + "?apikey=" + key;
-
     fetch(xidURL)
       .then((response) => response.json())
       .then((finalData) => {
-        console.log(finalData);
         setMoreName(finalData.name);
-
-        // setMoreImg(finalData.preview.source);
-        setMoreImg(
-          finalData.preview == null ? <p>TEST</p> : finalData.preview.source
-        );
         setMoreText(
           finalData.wikipedia_extracts == null ? (
             <p> No description available</p>
@@ -181,14 +170,19 @@ const SearchForm = (props) => {
           )
         );
 
-        // setMoreText(finalData.wikipedia_extracts.text);
+        setMoreImg(
+          finalData.preview == null ? (
+            <p>No photo available</p>
+          ) : (
+            finalData.preview.source
+          )
+        );
         setOpenTripMap(finalData.otm);
         setMoreAddress(
           `${finalData.address.house_number} ${finalData.address.road}`
         );
-
-        setMoreImg(finalData.preview.source);
-        setMoreText(finalData.wikipedia_extracts.text);
+        // setMoreImg (finalData.preview.source)
+        // setMoreText(finalData.wikipedia_extracts.text);
 
         setModalOpen(true);
       });
@@ -202,10 +196,15 @@ const SearchForm = (props) => {
     console.log("value", value);
     setFavorites(favResults.concat(value));
   }
-  console.log(favResults);
 
   const createTrip = (event) => {
     event.preventDefault();
+
+    if (!props.token) {
+      setShowRegisterModal(true);
+      return;
+    }
+
     fetch("https://wanderlust-travel-hhsk.herokuapp.com/trips/new", {
       method: "POST",
       body: JSON.stringify({
@@ -224,6 +223,9 @@ const SearchForm = (props) => {
       .then((res) => {
         console.log(res);
         addToast("Saved Successfully", { appearance: "success" });
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -297,8 +299,10 @@ const SearchForm = (props) => {
       </Form>
       <div>
         <Modal isOpen={modalOpen}>
-          <ModalHeader>{moreName}</ModalHeader>
-          <Button onClick={toggleModal}>X</Button>
+          <ModalHeader>
+            <span>{moreName}</span>
+            <Button onClick={toggleModal}>X</Button>
+          </ModalHeader>
           <ModalBody>
             <p>
               <b>{moreAddress}</b>
@@ -310,6 +314,15 @@ const SearchForm = (props) => {
                 See location at OpenTripMap
               </a>
             </p>
+          </ModalBody>
+        </Modal>
+        <Modal isOpen={showRegisterModal}>
+          <ModalHeader>
+            <span>Register</span>
+            <Button onClick={() => setShowRegisterModal(false)}>X</Button>
+          </ModalHeader>
+          <ModalBody>
+            <p>Please register or login to create a trip.</p>
           </ModalBody>
         </Modal>
         {/* 
