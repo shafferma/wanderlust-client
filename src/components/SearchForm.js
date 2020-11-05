@@ -13,10 +13,6 @@ import {
 import "../styles/SearchForm.css";
 import { useToasts } from "react-toast-notifications";
 
-// const { addToast } = useToasts();
-// useEffect(() => {
-//   addToast("Saved Successfully", { appearance: "success" });
-// }, []);
 const CATEGORIES = [
   {
     value: "accomodations",
@@ -98,11 +94,14 @@ const SearchForm = (props) => {
   const [kinds, setKinds] = useState();
   const [description, setDescription] = useState();
   const [favResults, setFavorites] = useState([]);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
 
   /* Start*/
   const [moreName, setMoreName] = useState();
   const [moreImg, setMoreImg] = useState();
   const [moreText, setMoreText] = useState();
+  const [moreAddress, setMoreAddress] = useState();
+  const [openTripMap, setOpenTripMap] = useState();
   const [modalOpen, setModalOpen] = useState(false);
 
   /* End*/
@@ -147,9 +146,7 @@ const SearchForm = (props) => {
           <Button id="xidFetch" onClick={(e) => moreInfo(item.xid)}>
             More Info
           </Button>
-          <Button id="favItem" onClick={(e) => addFavorite(item.name)}>
-            Heart
-          </Button>
+          <Button id="favItem" onClick={(e) => addFavorite(item.name)}></Button>
         </tr>
       );
     });
@@ -163,8 +160,26 @@ const SearchForm = (props) => {
       .then((response) => response.json())
       .then((finalData) => {
         setMoreName(finalData.name);
-        setMoreImg(finalData.preview.source);
-        setMoreText(finalData.wikipedia_extracts.text);
+        setMoreText(
+          finalData.wikipedia_extracts == null ? (
+            <p> No description available</p>
+          ) : (
+            finalData.wikipedia_extracts.text
+          )
+        );
+
+        setMoreImg(
+          finalData.preview == null ? (
+            <p>No photo available</p>
+          ) : (
+            finalData.preview.source
+          )
+        );
+        setOpenTripMap(finalData.otm);
+        setMoreAddress(
+          `${finalData.address.house_number} ${finalData.address.road}`
+        );
+
         setModalOpen(true);
       });
   }
@@ -177,10 +192,15 @@ const SearchForm = (props) => {
     console.log("value", value);
     setFavorites(favResults.concat(value));
   }
-  console.log(favResults);
 
   const createTrip = (event) => {
     event.preventDefault();
+
+    if (!props.token) {
+      setShowRegisterModal(true);
+      return;
+    }
+
     fetch("https://wanderlust-travel-hhsk.herokuapp.com/trips/new", {
       method: "POST",
       body: JSON.stringify({
@@ -199,6 +219,9 @@ const SearchForm = (props) => {
       .then((res) => {
         console.log(res);
         addToast("Saved Successfully", { appearance: "success" });
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -211,92 +234,119 @@ const SearchForm = (props) => {
         name="kinds"
         onClick={() => setKinds(c.value)}
       >
-        <p>{c.label}</p>
+        <span>{c.label}</span>
       </Button>
     ));
   };
 
   return (
-    <div>
-      <Form onSubmit={(event) => getCoord(event)}>
-        <div id="locationInput">
-          <FormGroup>
-            <Label>Choose a location:</Label>
-            <Input
-              type="text"
-              name="search"
-              onChange={(event) => setSearch(event.target.value)}
-              required
-              placeholder="Enter a City"
-            ></Input>
-          </FormGroup>
-          <FormGroup>
-            <Label>Select a distance radius:</Label>
-          </FormGroup>
-          <FormGroup className="radioButtons">
-            <Label>
-              <Input
-                type="radio"
-                name="radius"
-                value="1610"
-                onChange={(event) => setRadius(event.target.value)}
-              />{" "}
-              1 mile
-            </Label>
-          </FormGroup>
-          <FormGroup className="radioButtons">
-            <Label>
-              <Input
-                type="radio"
-                name="radius"
-                value="8047"
-                onChange={(event) => setRadius(event.target.value)}
-              />{" "}
-              5 miles
-            </Label>
-          </FormGroup>
-          <FormGroup className="radioButtons">
-            <Label>
-              <Input
-                type="radio"
-                name="radius"
-                value="16100"
-                onChange={(event) => setRadius(event.target.value)}
-              />{" "}
-              10 miles
-            </Label>
-          </FormGroup>
-        </div>
-
-        <div className="buttonImage">{createCategoryButtons()}</div>
-      </Form>
+    <div id="searchform">
       <div>
-        <Modal isOpen={modalOpen}>
-          <ModalHeader>{moreName}</ModalHeader>
-          <Button onClick={toggleModal}>X</Button>
-          <ModalBody>
-            <img src={`${moreImg}`} />
-            <p>{moreText}</p>
-          </ModalBody>
-        </Modal>
-        {/* 
+        <Form onSubmit={(event) => getCoord(event)}>
+          <div id="locationInput">
+            <FormGroup>
+              <Label>Choose a location:</Label>
+              <Input
+                type="text"
+                name="search"
+                onChange={(event) => setSearch(event.target.value)}
+                required
+                placeholder="Enter a City"
+              ></Input>
+            </FormGroup>
+
+            <FormGroup>
+              <Label id="distanceRadius">Select a distance radius:</Label>
+            </FormGroup>
+            <div className="radioGroup">
+              <FormGroup className="radioButtons">
+                <Label>
+                  <Input
+                    type="radio"
+                    name="radius"
+                    value="1610"
+                    onChange={(event) => setRadius(event.target.value)}
+                  />{" "}
+                  1 mile
+                </Label>
+              </FormGroup>
+              <FormGroup className="radioButtons">
+                <Label>
+                  <Input
+                    type="radio"
+                    name="radius"
+                    value="8047"
+                    onChange={(event) => setRadius(event.target.value)}
+                  />{" "}
+                  5 miles
+                </Label>
+              </FormGroup>
+              <FormGroup className="radioButtons">
+                <Label>
+                  <Input
+                    type="radio"
+                    name="radius"
+                    value="16100"
+                    onChange={(event) => setRadius(event.target.value)}
+                  />{" "}
+                  10 miles
+                </Label>
+              </FormGroup>
+            </div>
+          </div>
+
+          <div className="category-buttons">{createCategoryButtons()}</div>
+        </Form>
+        <div>
+          <Modal isOpen={modalOpen}>
+            <ModalHeader>
+              <span>{moreName}</span>
+              <Button onClick={toggleModal}>X</Button>
+            </ModalHeader>
+            <ModalBody>
+              <p>
+                <b>{moreAddress}</b>
+              </p>
+              <img src={`${moreImg}`} alt="No Photo Available" />
+              <p>{moreText}</p>
+              <p>
+                <a target="_blank" href={openTripMap}>
+                  See location at OpenTripMap
+                </a>
+              </p>
+            </ModalBody>
+          </Modal>
+          <Modal isOpen={showRegisterModal}>
+            <ModalHeader>
+              <span>Register</span>
+              <Button onClick={() => setShowRegisterModal(false)}>X</Button>
+            </ModalHeader>
+            <ModalBody>
+              <p>Please register or login to create a trip.</p>
+            </ModalBody>
+          </Modal>
+          {/* 
+
           A tbody cannot live inside of a <div> container... 
           it must live inside of a <table> 
           ... be sure to define a <thead> with columns
         */}
-        <table>
-          <tbody>{data?.length ? displayResults() : <></>}</tbody>
-        </table>
-        <Form onSubmit={createTrip}>
-          <FormGroup>
-            <Input
-              onChange={(e) => setDescription(e.target.value)}
-              value={description}
-              placeholder="Trip description (ex. Anniversary)"
-            ></Input>
-            <Button type="submit">Create Trip</Button>
-          </FormGroup>
-        </Form>
+          <table>
+            <tbody>{data?.length ? displayResults() : <></>}</tbody>
+          </table>
+          <div className="tripCreate">
+            <Form onSubmit={createTrip}>
+              <FormGroup>
+                <Input
+                  onChange={(e) => setDescription(e.target.value)}
+                  value={description}
+                  placeholder="Trip description (ex. Anniversary)"
+                ></Input>
+                <Button type="submit">Create Trip</Button>
+              </FormGroup>
+            </Form>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,103 +1,205 @@
-.radioButtons {
-  margin-left: 30px;
+#favItem {
+  background-image: url("../assets/heart.png");
+  background-repeat: no-repeat;
+  background-size: 20px;
+  padding-bottom: 35px;
+  background-color: transparent;
+  border: transparent;
 }
-.kind {
+.searchform {
+  margin-left: auto;
+  margin-right: auto;
+}
+/* .kind {
   color: red;
   padding-top: 50px;
   margin-left: auto;
   margin-right: auto;
-}
+} */
 
 #locationInput {
   width: 25%;
-  float: left;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Pacifico", cursive;
+  font-size: 30px;
+  color: rgb(233, 188, 120);
+  /* text-shadow: 3px 3px black; */
 }
+/* #distanceRadius{
+    color: red;
+} */
+.radioGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 20px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 
+  /* width: 25%;
+  float: left; */
+  font-family: "Montserrat", sans-serif;
+}
 .buttonImage {
-  width: 75%;
+  width: 100%;
   float: right;
 }
 
-.buttonImage button {
-  width: 175px;
-  height: 75px;
-  font-size: 20px;
-  text-shadow: 2px 2px black;
+table {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 350px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 30px;
+  color: rgb(231, 185, 114);
+  border-radius: 15px;
+}
+
+.tripCreate {
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (min-width: 360px) {
+  #locationInput {
+    /* width: 25%;
+  float: left; */
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+  }
+}
+
+.category-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+  box-sizing: border-box;
+  padding: 5px;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+  .category-buttons {
+    max-width: 600px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .category-buttons {
+    max-width: 900px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.category-buttons button {
+  width: 100%;
+  height: 120px;
+  font-size: 13px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
   background-size: cover;
   background-repeat: no-repeat;
-  margin: 5px;
+  letter-spacing: 0.05rem;
+  box-sizing: border-box;
+  border: 0;
+  position: relative;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
-.buttonImage button p {
-  background-color: rgba(13, 139, 139, 0.6);
+.category-buttons button span {
+  background-color: rgba(13, 139, 139, 0.8);
   border-radius: 5px;
-}
-/* 
-#beaches{
-    background-image: url(../assets/beach.jpg);
-}
-
-#amusements{
-    background-image: url(../assets/amusements.jpg);
+  margin: 0;
+  padding: 5px 10px 3px;
+  display: inline-block;
 }
 
-#geology{
-    background-image: url(../assets/geology.jpg);
+@media screen and (min-width: 1100px) {
+  .category-buttons button span {
+    background-color: rgba(13, 139, 139, 0.8);
+    border-radius: 5px;
+    margin: 0;
+    padding: 5px 10px 3px;
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+  }
 }
 
-#accomodations{
-    background-image: url(../assets/accomodations.jpg);
+#beaches {
+  background-image: url(../assets/beaches.jpg);
 }
 
-#parks{
-    background-image: url(../assets/parks.jpg);
+#amusements {
+  background-image: url(../assets/amusement.jpg);
 }
 
-#religious{
-    background-image: url(../assets/religious.jpg);
+#geological_formations {
+  background-image: url(../assets/geology.jpg);
 }
 
-#archaeology{
-    background-image: url(../assets/archaeology.jpg);
+#accomodations {
+  background-image: url(../assets/hotel2.jpg);
 }
 
-#architecture{
-    background-image: url(../assets/architecture.jpg);
+#urban_environment {
+  background-image: url(../assets/park.jpg);
 }
 
-#casino{
-    background-image: url(../assets/casino.jpg);
-}
-#landmarks{
-    background-image: url(../assets/rushmore.jpg);
-}
-#historicalPlaces{
-    background-image: url(../assets/temple.jpg);
+#religion {
+  background-image: url(../assets/religion.jpg);
 }
 
-#memorials{
-    background-image: url(../assets/memorial.jpg);
-}
-#museum{
-    background-image: url(../assets/museum.jpg);
+#archaeology {
+  background-image: url(../assets/archaeology.jpg);
 }
 
-#nature{
-    background-image: url(../assets/nature.jpg);
+#architecture {
+  background-image: url(../assets/architecture.jpg);
 }
 
-#restaurant{
-    background-image: url(../assets/restaurant.jpg);
+#casino {
+  background-image: url(../assets/casino.jpg);
 }
 
-#shopping{
-    background-image: url(../assets/shopping.jpg);
+#historic_architecture {
+  background-image: url(../assets/rushmore.jpg);
 }
 
-#sports{
-    background-image: url(../assets/sports.jpg);
+#historical_places {
+  background-image: url(../assets/temple.jpg);
 }
 
-#theater{
-    background-image: url(../assets/theater.jpg);
-} */
+#burial_places {
+  background-image: url(../assets/memorial.jpg);
+}
+
+#museums {
+  background-image: url(../assets/museum.jpg);
+}
+
+#natural {
+  background-image: url(../assets/nature.jpg);
+}
+
+#foods {
+  background-image: url(../assets/restaurant.jpg);
+}
+
+#shops {
+  background-image: url(../assets/shopping.jpg);
+}
+
+#sport {
+  background-image: url(../assets/sports.jpg);
+}
+
+#theatres_and_entertainments {
+  background-image: url(../assets/theater.jpg);
+}

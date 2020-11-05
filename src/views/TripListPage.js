@@ -5,12 +5,12 @@ import TripEdit from "./TripEdit";
 import {
   Card,
   Col,
+  Container,
   CardBody,
   CardText,
   CardTitle,
   CardLink,
   CardSubtitle,
-  Container,
   Button,
   Modal,
   ModalHeader,
@@ -59,31 +59,35 @@ const TripListPage = (props) => {
     fetchAllTrips();
   }
 
-  useEffect(() => {
-    if (props.token) fetchAllTrips();
-  }, [props.token]);
+  // useEffect(() => {
+  //   fetchAllTrips();
+  // }, []);
+
+  //   if (props.token) fetchAllTrips();
+  // }, [props.token]);
 
   const toggleModal = () => setModalOpen(!modalOpen);
-  // const { addToast } = useToasts();
+  const { addToast } = useToasts();
   // useEffect(() => {
   //   addToast("Saved Successfully", { appearance: "success" });
   // }, []);
   // form submission handling
-  // const onSubmit = async (value) => {
-  //   fetch("https://wanderlust-travel-hhsk.herokuapp.com/trips/new", {
-  //     headers: {
-  //       Authorization: props.token,
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((body) => {
-  //       setUserTrips(body.results);
-  //       addToast("Saved Successfully", { appearance: "success" });
-  //     })
-  //     .catch((error) => {
-  //       addToast(error.message, { appearance: "error" });
-  //     });
-  // };
+
+  const onSubmit = async (value) => {
+    fetch("https://wanderlust-travel-hhsk.herokuapp.com/trips/new", {
+      headers: {
+        Authorization: props.token,
+      },
+    })
+      .then((response) => response.json())
+      .then((body) => {
+        setUserTrips(body.results);
+        addToast("Saved Successfully", { appearance: "success" });
+      })
+      .catch((error) => {
+        addToast(error.message, { appearance: "error" });
+      });
+  };
 
   return (
     <div>
