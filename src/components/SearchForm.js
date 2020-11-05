@@ -180,7 +180,6 @@ const SearchForm = (props) => {
           `${finalData.address.house_number} ${finalData.address.road}`
         );
 
-
         setModalOpen(true);
       });
   }
@@ -256,7 +255,6 @@ const SearchForm = (props) => {
               ></Input>
             </FormGroup>
 
-
             <FormGroup>
               <Label id="distanceRadius">Select a distance radius:</Label>
             </FormGroup>
@@ -301,8 +299,10 @@ const SearchForm = (props) => {
         </Form>
         <div>
           <Modal isOpen={modalOpen}>
-            <ModalHeader>{moreName}</ModalHeader>
-            <Button onClick={toggleModal}>X</Button>
+            <ModalHeader>
+              <span>{moreName}</span>
+              <Button onClick={toggleModal}>X</Button>
+            </ModalHeader>
             <ModalBody>
               <p>
                 <b>{moreAddress}</b>
@@ -316,39 +316,16 @@ const SearchForm = (props) => {
               </p>
             </ModalBody>
           </Modal>
+          <Modal isOpen={showRegisterModal}>
+            <ModalHeader>
+              <span>Register</span>
+              <Button onClick={() => setShowRegisterModal(false)}>X</Button>
+            </ModalHeader>
+            <ModalBody>
+              <p>Please register or login to create a trip.</p>
+            </ModalBody>
+          </Modal>
           {/* 
-
-        <div className="buttonImage">{createCategoryButtons()}</div>
-      </Form>
-      <div>
-        <Modal isOpen={modalOpen}>
-          <ModalHeader>
-            <span>{moreName}</span>
-            <Button onClick={toggleModal}>X</Button>
-          </ModalHeader>
-          <ModalBody>
-            <p>
-              <b>{moreAddress}</b>
-            </p>
-            <img src={`${moreImg}`} alt="" />
-            <p>{moreText}</p>
-            <p>
-              <a target="_blank" href={openTripMap}>
-                See location at OpenTripMap
-              </a>
-            </p>
-          </ModalBody>
-        </Modal>
-        <Modal isOpen={showRegisterModal}>
-          <ModalHeader>
-            <span>Register</span>
-            <Button onClick={() => setShowRegisterModal(false)}>X</Button>
-          </ModalHeader>
-          <ModalBody>
-            <p>Please register or login to create a trip.</p>
-          </ModalBody>
-        </Modal>
-        {/* 
 
           A tbody cannot live inside of a <div> container... 
           it must live inside of a <table> 
