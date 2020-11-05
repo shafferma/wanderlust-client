@@ -146,9 +146,7 @@ const SearchForm = (props) => {
           <Button id="xidFetch" onClick={(e) => moreInfo(item.xid)}>
             More Info
           </Button>
-          <Button id="favItem" onClick={(e) => addFavorite(item.name)}>
-            Heart
-          </Button>
+          <Button id="favItem" onClick={(e) => addFavorite(item.name)}></Button>
         </tr>
       );
     });
@@ -181,8 +179,7 @@ const SearchForm = (props) => {
         setMoreAddress(
           `${finalData.address.house_number} ${finalData.address.road}`
         );
-        // setMoreImg (finalData.preview.source)
-        // setMoreText(finalData.wikipedia_extracts.text);
+
 
         setModalOpen(true);
       });
@@ -244,56 +241,82 @@ const SearchForm = (props) => {
   };
 
   return (
-    <div>
-      <Form onSubmit={(event) => getCoord(event)}>
-        <div id="locationInput">
-          <FormGroup>
-            <Label>Choose a location:</Label>
-            <Input
-              type="text"
-              name="search"
-              onChange={(event) => setSearch(event.target.value)}
-              required
-              placeholder="Enter a City"
-            ></Input>
-          </FormGroup>
-          <FormGroup>
-            <Label>Select a distance radius:</Label>
-          </FormGroup>
-          <FormGroup className="radioButtons">
-            <Label>
+    <div id="searchform">
+      <div>
+        <Form onSubmit={(event) => getCoord(event)}>
+          <div id="locationInput">
+            <FormGroup>
+              <Label>Choose a location:</Label>
               <Input
-                type="radio"
-                name="radius"
-                value="1610"
-                onChange={(event) => setRadius(event.target.value)}
-              />{" "}
-              1 mile
-            </Label>
-          </FormGroup>
-          <FormGroup className="radioButtons">
-            <Label>
-              <Input
-                type="radio"
-                name="radius"
-                value="8047"
-                onChange={(event) => setRadius(event.target.value)}
-              />{" "}
-              5 miles
-            </Label>
-          </FormGroup>
-          <FormGroup className="radioButtons">
-            <Label>
-              <Input
-                type="radio"
-                name="radius"
-                value="16100"
-                onChange={(event) => setRadius(event.target.value)}
-              />{" "}
-              10 miles
-            </Label>
-          </FormGroup>
-        </div>
+                type="text"
+                name="search"
+                onChange={(event) => setSearch(event.target.value)}
+                required
+                placeholder="Enter a City"
+              ></Input>
+            </FormGroup>
+
+
+            <FormGroup>
+              <Label id="distanceRadius">Select a distance radius:</Label>
+            </FormGroup>
+            <div className="radioGroup">
+              <FormGroup className="radioButtons">
+                <Label>
+                  <Input
+                    type="radio"
+                    name="radius"
+                    value="1610"
+                    onChange={(event) => setRadius(event.target.value)}
+                  />{" "}
+                  1 mile
+                </Label>
+              </FormGroup>
+              <FormGroup className="radioButtons">
+                <Label>
+                  <Input
+                    type="radio"
+                    name="radius"
+                    value="8047"
+                    onChange={(event) => setRadius(event.target.value)}
+                  />{" "}
+                  5 miles
+                </Label>
+              </FormGroup>
+              <FormGroup className="radioButtons">
+                <Label>
+                  <Input
+                    type="radio"
+                    name="radius"
+                    value="16100"
+                    onChange={(event) => setRadius(event.target.value)}
+                  />{" "}
+                  10 miles
+                </Label>
+              </FormGroup>
+            </div>
+          </div>
+
+          <div className="buttonImage">{createCategoryButtons()}</div>
+        </Form>
+        <div>
+          <Modal isOpen={modalOpen}>
+            <ModalHeader>{moreName}</ModalHeader>
+            <Button onClick={toggleModal}>X</Button>
+            <ModalBody>
+              <p>
+                <b>{moreAddress}</b>
+              </p>
+              <img src={`${moreImg}`} alt="" />
+              <p>{moreText}</p>
+              <p>
+                <a target="_blank" href={openTripMap}>
+                  See location at OpenTripMap
+                </a>
+              </p>
+            </ModalBody>
+          </Modal>
+          {/* 
 
         <div className="buttonImage">{createCategoryButtons()}</div>
       </Form>
@@ -326,23 +349,25 @@ const SearchForm = (props) => {
           </ModalBody>
         </Modal>
         {/* 
+
           A tbody cannot live inside of a <div> container... 
           it must live inside of a <table> 
           ... be sure to define a <thead> with columns
         */}
-        <table>
-          <tbody>{data?.length ? displayResults() : <></>}</tbody>
-        </table>
-        <Form onSubmit={createTrip}>
-          <FormGroup>
-            <Input
-              onChange={(e) => setDescription(e.target.value)}
-              value={description}
-              placeholder="Trip description (ex. Anniversary)"
-            ></Input>
-            <Button type="submit">Create Trip</Button>
-          </FormGroup>
-        </Form>
+          <table>
+            <tbody>{data?.length ? displayResults() : <></>}</tbody>
+          </table>
+          <Form onSubmit={createTrip}>
+            <FormGroup>
+              <Input
+                onChange={(e) => setDescription(e.target.value)}
+                value={description}
+                placeholder="Trip description (ex. Anniversary)"
+              ></Input>
+              <Button type="submit">Create Trip</Button>
+            </FormGroup>
+          </Form>
+        </div>
       </div>
     </div>
   );

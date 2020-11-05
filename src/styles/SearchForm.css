@@ -1,21 +1,48 @@
-.radioButtons {
-  margin-left: 30px;
+#favItem {
+  background-image: url("../assets/heart.png");
+  background-repeat: no-repeat;
+  background-size: 20px;
+  padding-bottom: 35px;
+  background-color: transparent;
+  border: transparent;
 }
-.kind {
+.searchform {
+  margin-left: auto;
+  margin-right: auto;
+}
+/* .kind {
   color: red;
   padding-top: 50px;
   margin-left: auto;
   margin-right: auto;
-}
+} */
 
 #locationInput {
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Pacifico", cursive;
+  font-size: 30px;
+  color: rgb(214, 171, 105);
+  text-shadow: 3px 3px black;
+}
+/* #distanceRadius{
+    color: red;
+} */
+.radioGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 20px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+
   /* width: 25%;
   float: left; */
   font-family: "Montserrat", sans-serif;
-}
 
+}
 .buttonImage {
-  width: 75%;
+  width: 100%;
   float: right;
 }
 
@@ -33,73 +60,76 @@
   background-color: rgba(13, 139, 139, 0.6);
   border-radius: 5px;
 }
-/* 
-#beaches{
+
+/* #beaches{
     background-image: url(../assets/beach.jpg);
-}
+} */
 
-#amusements{
+/* #amusements{
     background-image: url(../assets/amusements.jpg);
-}
+} */
 
-#geology{
+/* #geology{
     background-image: url(../assets/geology.jpg);
+} */
+
+#accomodations {
+  background-image: url(../assets/hotel.jpg);
 }
 
-#accomodations{
-    background-image: url(../assets/accomodations.jpg);
-}
-
-#parks{
+/* #parks{
     background-image: url(../assets/parks.jpg);
-}
+} */
 
-#religious{
+/* #religious{
     background-image: url(../assets/religious.jpg);
-}
+} */
 
-#archaeology{
+/* #archaeology{
     background-image: url(../assets/archaeology.jpg);
-}
+} */
 
-#architecture{
+/* #architecture{
     background-image: url(../assets/architecture.jpg);
-}
+} */
 
-#casino{
+/* #casino{
     background-image: url(../assets/casino.jpg);
-}
-#landmarks{
+} */
+
+/* #landmarks{
     background-image: url(../assets/rushmore.jpg);
-}
-#historicalPlaces{
+} */
+
+/* #historicalPlaces{
     background-image: url(../assets/temple.jpg);
-}
+} */
 
-#memorials{
+/* #memorials{
     background-image: url(../assets/memorial.jpg);
-}
-#museum{
+} */
+
+/* #museum{
     background-image: url(../assets/museum.jpg);
-}
+} */
 
-#nature{
+/* #nature{
     background-image: url(../assets/nature.jpg);
-}
+} */
 
-#restaurant{
+/* #restaurant{
     background-image: url(../assets/restaurant.jpg);
-}
+} */
 
-#shopping{
+/* #shopping{
     background-image: url(../assets/shopping.jpg);
-}
+} */
 
-#sports{
+/* #sports{
     background-image: url(../assets/sports.jpg);
-}
+} */
 
-#theater{
+/* #theater{
     background-image: url(../assets/theater.jpg);
 } */
 

@@ -59,12 +59,22 @@ const TripListPage = (props) => {
     fetchAllTrips();
   }
 
+
+  // useEffect(() => {
+
   useEffect(() => {
     //   fetchAllTrips();
     // }, []);
 
-    if (props.token) fetchAllTrips();
-  }, [props.token]);
+
+  //   fetchAllTrips();
+  // }, []);
+  // const [modalOpen, setModalOpen] = useState();
+
+
+  //   if (props.token) fetchAllTrips();
+  // }, [props.token]);
+
 
   const toggleModal = () => setModalOpen(!modalOpen);
   const { addToast } = useToasts();
@@ -82,12 +92,29 @@ const TripListPage = (props) => {
       .then((response) => response.json())
       .then((body) => {
         setUserTrips(body.results);
-        addToast("Saved Successfully", { appearance: "success" });
+        // addToast("Saved Successfully", { appearance: "success" });
       })
       .catch((error) => {
-        addToast(error.message, { appearance: "error" });
+        // addToast(error.message, { appearance: "error" });
       });
   };
+
+
+  // const onSubmit = async (value) => {
+  //   fetch("https://wanderlust-travel-hhsk.herokuapp.com/trips/new", {
+  //     headers: {
+  //       Authorization: props.token,
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((body) => {
+  //       setUserTrips(body.results);
+  //       addToast("Saved Successfully", { appearance: "success" });
+  //     })
+  //     .catch((error) => {
+  //       addToast(error.message, { appearance: "error" });
+  //     });
+  // };
 
   return (
     <div>
