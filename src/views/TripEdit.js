@@ -9,6 +9,7 @@ import {
   ModalHeader,
   ModalBody,
 } from "reactstrap";
+import "../styles/TripEdit.css";
 
 const TripEdit = (props) => {
   const [rating, setRating] = useState();
@@ -26,25 +27,27 @@ const TripEdit = (props) => {
         }),
       }
     ).then((response) => {
-      // props.fetchAllTrips();
+      props.fetchAllTrips();
       props.updateOff();
     });
   };
 
   return (
     <Modal isOpen={true}>
-      <ModalHeader>What is your interest in this destination?</ModalHeader>
+      <ModalHeader className="editHeader">
+        What is your interest in this destination?
+      </ModalHeader>
       <ModalBody>
         <Form onSubmit={tripUpdate}>
-          <FormGroup>
-            <Button type="submit" onClick={(e) => setRating(5)}>
-              5 - ASAP!
+          <FormGroup className="updateButtons">
+            <Button id="asap" type="submit" onClick={(e) => setRating(5)}>
+              Go ASAP!
             </Button>
-            <Button type="submit" onClick={(e) => setRating(3)}>
-              3 - This year
+            <Button id="thisYear" type="submit" onClick={(e) => setRating(3)}>
+              Go This Year
             </Button>
-            <Button type="submit" onClick={(e) => setRating(1)}>
-              1 - Someday
+            <Button id="someday" type="submit" onClick={(e) => setRating(1)}>
+              Go Someday
             </Button>
           </FormGroup>
         </Form>
