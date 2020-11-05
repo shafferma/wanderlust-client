@@ -59,22 +59,18 @@ const TripListPage = (props) => {
     fetchAllTrips();
   }
 
-
   // useEffect(() => {
 
-  useEffect(() => {
-    //   fetchAllTrips();
-    // }, []);
-
+  // useEffect(() => {
+  //   fetchAllTrips();
+  // }, []);
 
   //   fetchAllTrips();
   // }, []);
   // const [modalOpen, setModalOpen] = useState();
 
-
   //   if (props.token) fetchAllTrips();
   // }, [props.token]);
-
 
   const toggleModal = () => setModalOpen(!modalOpen);
   const { addToast } = useToasts();
@@ -98,7 +94,6 @@ const TripListPage = (props) => {
         // addToast(error.message, { appearance: "error" });
       });
   };
-
 
   // const onSubmit = async (value) => {
   //   fetch("https://wanderlust-travel-hhsk.herokuapp.com/trips/new", {
