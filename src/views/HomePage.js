@@ -5,12 +5,12 @@ import "../styles/HomePage.css";
 
 const HomePage = () => {
   return (
-    <div className="mainDiv">
-      <Container id="landingTitle">
+    <Container>
+      <div id="landingTitle">
         <h1 className="title">Wanderlust</h1>
         <p className="sub-title">It's a wide world. Go wandering.</p>
-      </Container>
-    </div>
+      </div>
+    </Container>
   );
 };
 
