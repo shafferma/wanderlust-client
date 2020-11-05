@@ -35,6 +35,11 @@
   justify-content: space-between;
   font-size: 20px;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+
+  /* width: 25%;
+  float: left; */
+  font-family: "Montserrat", sans-serif;
+
 }
 .buttonImage {
   width: 100%;
@@ -127,3 +132,12 @@
 /* #theater{
     background-image: url(../assets/theater.jpg);
 } */
+
+@media screen and (min-width: 360px) {
+  #locationInput {
+    /* width: 25%;
+  float: left; */
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+  }
+}
