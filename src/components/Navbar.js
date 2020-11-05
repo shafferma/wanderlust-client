@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../styles/Navbar.css";
 import {
   Nav,
@@ -16,6 +16,22 @@ import RegistrationForm from "./RegistrationForm";
 const Sitebar = (props) => {
   const [collapsed, setCollapsed] = useState(true);
   const [showRegister, setShowRegister] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  useEffect(() => {
+    document.addEventListener("scroll", handleScroll);
+    return () => {
+      document.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleScroll = (event) => {
+    if (document.documentElement.scrollTop && !hasScrolled) {
+      setHasScrolled(true);
+    } else if (!document.documentElement.scrollTop) {
+      setHasScrolled(false);
+    }
+  };
 
   const toggleNavbar = () => setCollapsed(!collapsed);
 
@@ -31,7 +47,13 @@ const Sitebar = (props) => {
   const closeRegister = () => setShowRegister(false);
 
   return (
-    <div id="navbar" className={!collapsed ? "is-expanded" : ""}>
+    <div
+      id="navbar"
+      className={classNames({
+        "is-expanded": !collapsed,
+        "has-scrolled": hasScrolled,
+      })}
+    >
       <Navbar color="faded" light expand="md">
         <NavbarBrand href="/" className="mr-auto"></NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
@@ -80,3 +102,10 @@ const Sitebar = (props) => {
 };
 
 export default Sitebar;
+
+function classNames(classes) {
+  return Object.entries(classes)
+    .filter(([key, value]) => value)
+    .map(([key, value]) => key)
+    .join(" ");
+}
