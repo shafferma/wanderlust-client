@@ -234,7 +234,7 @@ const SearchForm = (props) => {
         name="kinds"
         onClick={() => setKinds(c.value)}
       >
-        <p>{c.label}</p>
+        <span>{c.label}</span>
       </Button>
     ));
   };
@@ -295,7 +295,7 @@ const SearchForm = (props) => {
             </div>
           </div>
 
-          <div className="buttonImage">{createCategoryButtons()}</div>
+          <div className="category-buttons">{createCategoryButtons()}</div>
         </Form>
         <div>
           <Modal isOpen={modalOpen}>
