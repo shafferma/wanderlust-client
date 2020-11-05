@@ -207,7 +207,7 @@ const SearchForm = (props) => {
         trip: {
           location: search,
           description: description,
-          sites: JSON.stringify(favResults),
+          sites: JSON.stringify(favResults), //sites: favResults
         },
       }),
       headers: new Headers({

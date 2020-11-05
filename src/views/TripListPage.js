@@ -93,7 +93,7 @@ const TripListPage = (props) => {
     <div>
       <div>
         <Container>
-          <Col md="9">
+          <Col>
             {console.log("tripslist value", userTrips)}
             {userTrips ? (
               <TripViewPage
@@ -104,8 +104,6 @@ const TripListPage = (props) => {
                 updateOn={updateOn}
               />
             ) : null}
-          </Col>
-          <Col md="3">
             {updateActive ? (
               <TripEdit
                 tripToUpdate={tripToUpdate}
