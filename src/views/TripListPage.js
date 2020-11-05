@@ -89,22 +89,6 @@ const TripListPage = (props) => {
       });
   };
 
-  // const onSubmit = async (value) => {
-  //   fetch("https://wanderlust-travel-hhsk.herokuapp.com/trips/new", {
-  //     headers: {
-  //       Authorization: props.token,
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((body) => {
-  //       setUserTrips(body.results);
-  //       addToast("Saved Successfully", { appearance: "success" });
-  //     })
-  //     .catch((error) => {
-  //       addToast(error.message, { appearance: "error" });
-  //     });
-  // };
-
   return (
     <div>
       <div>
